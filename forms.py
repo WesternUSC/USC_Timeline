@@ -12,6 +12,7 @@ class RegistrationForm(FlaskForm):
     email = StringField(
         'Email', validators=[
             DataRequired(),
+            Length(max=120),
             Email()
         ]
     )
