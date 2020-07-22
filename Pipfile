@@ -9,6 +9,7 @@ mypy = "*"
 [packages]
 flask = "*"
 flask-wtf = "*"
+email-validator = "*"
 
 [requires]
 python_version = "3.8"
