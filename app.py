@@ -2,7 +2,7 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route("/")
-def hello():
+def index():
     return "<h3>Hello World!</h3>"
 
 if __name__ == '__main__':
