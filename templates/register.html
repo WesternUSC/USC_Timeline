@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div>
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <legend>Join Today</legend>
+                <div>
+                    {{ form.username.label(class="css-class-name") }}
+                    {% if form.username.errors %}
+                        {{ form.username(class="alert-error css-class-name-2") }}
+                        <div>
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username(class="css-class-name-1 css-class-name-2") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.email.label(class="css-class-name") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="alert-error css-class-name-2") }}
+                        <div>
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="css-class-name-1 css-class-name-2") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.password.label(class="css-class-name") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="alert-error css-class-name-2") }}
+                        <div>
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="css-class-name-1 css-class-name-2") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.confirm_password.label(class="css-class-name") }}
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="alert-error css-class-name-2") }}
+                        <div>
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="css-class-name-1 css-class-name-2") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div>
+                {{ form.submit(class="css-class-name") }}
+            </div>
+        </form>
+    </div>
+    <div>
+        <small>
+            Already Have An Account? <a href="{{ url_for('login') }}">Sign In</a>
+        </small>
+    </div>
+{% endblock content %}
+

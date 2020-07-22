@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div>
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <legend>Sign In</legend>
+                <div>
+                    {{ form.email.label(class="css-class-name") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="alert-error css-class-name-2") }}
+                        <div>
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="css-class-name-1 css-class-name-2") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.password.label(class="css-class-name") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="alert-error css-class-name-2") }}
+                        <div>
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="css-class-name-1 css-class-name-2") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.remember(class="css-class-name") }}
+                    {{ form.remember.label(class="css-class-name") }}
+                </div>
+            </fieldset>
+            <div>
+                {{ form.submit(class="css-class-name") }}
+            </div>
+            <small>
+                <a href="#">Forgot Password?</a>
+            </small>
+        </form>
+    </div>
+    <div>
+        <small>
+            Need An Account? <a href="{{ url_for('register') }}">Sign Up</a>
+        </small>
+    </div>
+{% endblock content %}
+
