@@ -16,7 +16,8 @@
     "url": "https://github.com/WesternUSC/usctimeline/issues"
   },
   "homepage": "https://github.com/WesternUSC/usctimeline#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-sass": "^4.1.0"
   }
