@@ -17,13 +17,13 @@ class User(db.Model):
     posts = db.relationship('Event', backref='author', lazy=True)
 
     def __repr__(self):
-        return f"User('{self.username}, '{self.email}'. '{self.img_file}')"
+        return f"User('{self.username}, '{self.email}'. '{self.profile_img}')"
 
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120), nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
+    date = db.Column(db.Date, nullable=False)
     description = db.Column(db.Text, nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
@@ -34,7 +34,7 @@ class Event(db.Model):
 
 class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    filepath = db.Column(db.String(20))
+    filepath = db.Column(db.String(20), unique=True, nullable=False)
 
     def __repr__(self):
         return f"Image('{self.filepath}')"
