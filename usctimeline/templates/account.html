@@ -4,7 +4,7 @@
     <h2>Email: {{ current_user.email }}</h2>
     <img src="{{ profile_img }}" alt="account profile picture">
     <div>
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <fieldset>
                 <legend>Account Information</legend>
@@ -14,7 +14,7 @@
                         {{ form.username(class="alert-error css-class-name-2") }}
                         <div>
                             {% for error in form.username.errors %}
-                                <span>{{ error }}</span>
+                                <span class="alert-error">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                     {% else %}
@@ -27,11 +27,20 @@
                         {{ form.email(class="alert-error css-class-name-2") }}
                         <div>
                             {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
+                                <span class="alert-error">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                     {% else %}
                         {{ form.email(class="css-class-name-1 css-class-name-2") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.profile_picture.label(class="css-class-name") }}
+                    {{ form.profile_picture(class="css-class-name") }}
+                    {% if form.profile_picture.errors %}
+                        {% for error in form.profile_picture.errors %}
+                            <span class="alert-error">{{ error }}</span><br>
+                        {% endfor %}
                     {% endif %}
                 </div>
             </fieldset>

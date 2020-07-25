@@ -1,3 +1,5 @@
+import os
+import secrets
 from flask import render_template, url_for, flash, redirect, request
 from usctimeline import app, db, bcrypt
 from usctimeline.forms import RegistrationForm, LoginForm, UpdateAccountForm
@@ -53,11 +55,24 @@ def logout():
     return redirect(url_for('index'))
 
 
+def save_img_to_file_system(img) -> str:
+    random_hex = secrets.token_hex(8)
+    _, file_ext = os.path.splitext(img.filename)
+    filename = random_hex + file_ext
+    filepath = os.path.join(app.root_path, 'static/images/profile', filename)
+    img.save(filepath)
+
+    return filename
+
+
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
+        if form.profile_picture.data:
+            new_img_filename = save_img_to_file_system(form.profile_picture.data)
+            current_user.profile_img = new_img_filename
         current_user.username = form.username.data
         current_user.email = form.email.data
         db.session.commit()
@@ -66,5 +81,5 @@ def account():
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
-    profile_img = url_for('static', filename=f'images/{current_user.profile_img}')
+    profile_img = url_for('static', filename=f'images/profile/{current_user.profile_img}')
     return render_template('account.html', title='Account', profile_img=profile_img, form=form)
