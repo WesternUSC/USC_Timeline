@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
 from usctimeline import app, db, bcrypt
-from usctimeline.forms import RegistrationForm, LoginForm
+from usctimeline.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from usctimeline.models import User, Event, Image, Category, Tag, event_tags, event_images
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -53,7 +53,18 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route("/account")
+@app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
-    return render_template('account.html', title='Account')
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Your account has been updated!', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+    profile_img = url_for('static', filename=f'images/{current_user.profile_img}')
+    return render_template('account.html', title='Account', profile_img=profile_img, form=form)
