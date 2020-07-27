@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <legend>New Event</legend>
+                <div>
+                    {{ form.title.label(class="css-class-name") }}
+                    {% if form.title.errors %}
+                        {{ form.title(class="alert-error css-class-name-2") }}
+                        <div>
+                            {% for error in form.title.errors %}
+                                <span class="alert-error">{{ error }}</span><br>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.title(class="css-class-name-1 css-class-name-2") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.date.label(class="css-class-name") }}
+                    {% if form.date.errors %}
+                        {{ form.date(class="alert-error css-class-name-2") }}
+                        <div>
+                            {% for error in form.date.errors %}
+                                <span class="alert-error">{{ error }}</span><br>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.date(class="css-class-name-1 css-class-name-2") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.description.label(class="css-class-name") }}
+                    {% if form.description.errors %}
+                        {{ form.description(class="alert-error css-class-name-2") }}
+                        <div>
+                            {% for error in form.description.errors %}
+                                <span class="alert-error">{{ error }}</span><br>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.description(class="css-class-name-1 css-class-name-2") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.external_url.label(class="css-class-name") }}
+                    {% if form.external_url.errors %}
+                        {{ form.external_url(class="alert-error css-class-name-2") }}
+                        <div>
+                            {% for error in form.external_url.errors %}
+                                <span class="alert-error">{{ error }}</span><br>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.external_url(class="css-class-name-1 css-class-name-2") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.category.label(class="css-class-name") }}
+                    {% if form.category.errors %}
+                        {{ form.category(class="alert-error css-class-name-2") }}
+                        <div>
+                            {% for error in form.category.errors %}
+                                <span class="alert-error">{{ error }}</span><br>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.category(class="css-class-name-1 css-class-name-2") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.tags.label(class="css-class-name") }}
+                    {% if form.tags.errors %}
+                        {{ form.tags(class="alert-error css-class-name-2") }}
+                        <div>
+                            {% for error in form.tags.errors %}
+                                <span class="alert-error">{{ error }}</span><br>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.tags(class="css-class-name-1 css-class-name-2") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.images.label(class="css-class-name") }}
+                    {{ form.images(class="css-class-name") }}
+                    {% if form.images.errors %}
+                        {% for error in form.images.errors %}
+                            <span class="alert-error">{{ error }}</span><br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div>
+                {{ form.submit(class="css-class-name") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

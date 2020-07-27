@@ -1,15 +1,17 @@
 import os
 import secrets
+from calendar import month_name
 from flask import render_template, url_for, flash, redirect, request
 from usctimeline import app, db, bcrypt
-from usctimeline.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from usctimeline.forms import RegistrationForm, LoginForm, UpdateAccountForm, EventForm
 from usctimeline.models import User, Event, Image, Category, Tag, event_tags, event_images
 from flask_login import login_user, current_user, logout_user, login_required
 
 
 @app.route("/")
 def index():
-    return render_template('timeline.html')
+    events = Event.query.all()
+    return render_template('timeline.html', events=events, month_name=month_name)
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -55,11 +57,12 @@ def logout():
     return redirect(url_for('index'))
 
 
-def save_img_to_file_system(img) -> str:
+def save_img_to_file_system(img, dir) -> str:
     random_hex = secrets.token_hex(8)
     _, file_ext = os.path.splitext(img.filename)
     filename = random_hex + file_ext
-    filepath = os.path.join(app.root_path, 'static/images/profile', filename)
+    directory = f'static/images/{dir}'
+    filepath = os.path.join(app.root_path, directory, filename)
     img.save(filepath)
 
     return filename
@@ -71,7 +74,7 @@ def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.profile_picture.data:
-            new_img_filename = save_img_to_file_system(form.profile_picture.data)
+            new_img_filename = save_img_to_file_system(form.profile_picture.data, 'profile')
             current_user.profile_img = new_img_filename
         current_user.username = form.username.data
         current_user.email = form.email.data
@@ -83,3 +86,47 @@ def account():
         form.email.data = current_user.email
     profile_img = url_for('static', filename=f'images/profile/{current_user.profile_img}')
     return render_template('account.html', title='Account', profile_img=profile_img, form=form)
+
+
+@app.route("/event/new", methods=['GET', 'POST'])
+@login_required
+def new_event():
+    form = EventForm()
+    if form.validate_on_submit():
+        event = Event(
+            title=form.title.data,
+            date=form.date.data,
+            description=form.description.data,
+            external_url=form.external_url.data,
+            author=current_user,
+            category=form.category.data
+        )
+        if form.tags.data:
+            for tag in form.tags.data:
+                event.tags.append(tag)
+        if form.images.data[0].filename == '':
+            pass  # no images uploaded
+        else:
+            for image in form.images.data:
+                file_ext = os.path.splitext(image.filename)[1]
+                print()
+                if file_ext not in ['.png', '.PNG', 'jpg', '.JPG', '.jpeg', '.JPEG', '.svg', '.SVG']:
+                    flash('File does not have an approved extension: jpg, jpeg, png, svg', 'error')
+                    return render_template('new_event.html', title='New Event', form=form)
+            for image in form.images.data:
+                new_img_filename = save_img_to_file_system(image, 'event')
+                image = Image(
+                    filename=new_img_filename
+                )
+                event.images.append(image)
+        db.session.add(event)
+        db.session.commit()
+        flash('Event has been created!', 'success')
+        return redirect(url_for('account'))
+    return render_template('new_event.html', title='New Event', form=form)
+
+
+@app.route("/event/manage")
+@login_required
+def manage_events():
+    return render_template('manage_events.html', title='Manage Events')
