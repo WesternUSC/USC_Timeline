@@ -10,9 +10,10 @@ node_modules/
 ### Source CSS Files ###
 static/styles/css/*.css
 
-### All user-uploaded profile pictures (with the exception of default.svg) ###
+### All user-uploaded images (with the exception of default.svg) ###
 usctimeline/static/images/profile/*
 usctimeline/static/images/profile/!default.svg
+usctimeline/static/images/event/*
 
 ### Compiled Python Code ###
 *.pyc
