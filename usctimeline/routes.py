@@ -3,7 +3,7 @@ import secrets
 from calendar import month_name
 from flask import render_template, url_for, flash, redirect, request
 from usctimeline import app, db, bcrypt
-from usctimeline.forms import RegistrationForm, LoginForm, UpdateAccountForm, EventForm, CategoryForm
+from usctimeline.forms import RegistrationForm, LoginForm, UpdateAccountForm, EventForm, CategoryForm, TagForm
 from usctimeline.models import User, Event, Image, Category, Tag, event_tags, event_images
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -143,3 +143,16 @@ def new_category():
         flash('Category has been created!', 'success')
         return redirect(url_for('account'))
     return render_template('new_category.html', title='New Category', form=form)
+
+
+@app.route("/tag/new", methods=['GET', 'POST'])
+@login_required
+def new_tag():
+    form = TagForm()
+    if form.validate_on_submit():
+        tag = Tag(name=form.name.data)
+        db.session.add(tag)
+        db.session.commit()
+        flash('Tag has been created!', 'success')
+        return redirect(url_for('account'))
+    return render_template('new_tag.html', title='New Tag', form=form)

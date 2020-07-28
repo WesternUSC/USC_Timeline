@@ -135,3 +135,8 @@ class EventForm(FlaskForm):
 class CategoryForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     submit = SubmitField('Create')
+
+
+class TagForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    submit = SubmitField('Create')
