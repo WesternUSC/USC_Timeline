@@ -145,6 +145,12 @@ def new_category():
     return render_template('new_category.html', title='New Category', form=form)
 
 
+@app.route("/category/manage")
+@login_required
+def manage_categories():
+    return render_template('manage_categories.html', title='Manage Categories')
+
+
 @app.route("/tag/new", methods=['GET', 'POST'])
 @login_required
 def new_tag():
@@ -156,3 +162,9 @@ def new_tag():
         flash('Tag has been created!', 'success')
         return redirect(url_for('account'))
     return render_template('new_tag.html', title='New Tag', form=form)
+
+
+@app.route("/tag/manage")
+@login_required
+def manage_tags():
+    return render_template('manage_tags.html', title='Manage Tags')
