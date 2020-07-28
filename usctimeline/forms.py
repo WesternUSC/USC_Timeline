@@ -97,11 +97,14 @@ class UpdateAccountForm(FlaskForm):
             if user:
                 raise ValidationError('That email is taken. Please choose another.')
 
+
 def category_query():
     return Category.query
 
+
 def tag_query():
     return Tag.query
+
 
 class EventForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
@@ -126,4 +129,9 @@ class EventForm(FlaskForm):
         get_label='name'
     )
     images = MultipleFileField('Image(s)')
+    submit = SubmitField('Create')
+
+
+class CategoryForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
     submit = SubmitField('Create')
