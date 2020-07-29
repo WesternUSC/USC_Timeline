@@ -3,7 +3,8 @@ import secrets
 from calendar import month_name
 from flask import render_template, url_for, flash, redirect, request
 from usctimeline import app, db, bcrypt
-from usctimeline.forms import RegistrationForm, LoginForm, UpdateAccountForm, EventForm, CategoryForm, TagForm
+from usctimeline.forms import \
+    RegistrationForm, LoginForm, UpdateAccountForm, EventForm, CategoryForm, TagForm, update_event_form_factory
 from usctimeline.models import User, Event, Image, Category, Tag, event_tags, event_images
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -112,7 +113,13 @@ def new_event():
                 print()
                 if file_ext not in ['.png', '.PNG', 'jpg', '.JPG', '.jpeg', '.JPEG', '.svg', '.SVG']:
                     flash('File does not have an approved extension: jpg, jpeg, png, svg', 'error')
-                    return render_template('new_event.html', title='New Event', form=form)
+                    return render_template(
+                        'edit_event.html',
+                        title='New Event',
+                        form=form,
+                        legend='New Event',
+                        cancel_dest=url_for('account')
+                    )
             for image in form.images.data:
                 new_img_filename = save_img_to_file_system(image, 'event')
                 image = Image(
@@ -123,13 +130,58 @@ def new_event():
         db.session.commit()
         flash('Event has been created!', 'success')
         return redirect(url_for('account'))
-    return render_template('new_event.html', title='New Event', form=form)
+    return render_template(
+        'edit_event.html',
+        title='New Event',
+        form=form,
+        legend='New Event',
+        cancel_dest=url_for('account')
+    )
 
 
 @app.route("/event/manage")
 @login_required
 def manage_events():
     return render_template('manage_events.html', title='Manage Events')
+
+
+@app.route("/event/<int:id>")
+def event(id):
+    current_event = Event.query.get_or_404(id)
+    return render_template('event.html', title='single_event.title', event=current_event)
+
+
+@app.route("/event/<int:id>/update", methods=['GET', 'POST'])
+@login_required
+def update_event(id):
+    event = Event.query.get_or_404(id)
+    UpdateEventForm = update_event_form_factory(event.category.name, event.id)
+    form = UpdateEventForm()
+    if form.validate_on_submit():
+        event.title = form.title.data
+        event.date = form.date.data
+        event.description = form.description.data
+        event.external_url = form.external_url.data
+        event.category = form.category.data
+        original_event_tags = set(Tag.query.filter(Tag.events.any(id=1)).all())
+        for tag in form.tags.data:
+            if tag not in original_event_tags:
+                event.tags.append(tag)
+        db.session.commit()
+        flash('Event has been updated!', 'success')
+        return redirect(url_for('event', id=event.id))
+    elif request.method == 'GET':
+        form.title.data = event.title
+        form.date.data = event.date
+        form.description.data = event.description
+    return render_template(
+        'edit_event.html',
+        title='Update Event',
+        event=event,
+        form=form,
+        legend='Update Event',
+        cancel_dest=url_for('event', id=event.id),
+    )
 
 
 @app.route("/category/new", methods=['GET', 'POST'])

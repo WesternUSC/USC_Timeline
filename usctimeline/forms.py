@@ -132,6 +132,27 @@ class EventForm(FlaskForm):
     submit = SubmitField('Create')
 
 
+def update_event_form_factory(default_category_name, event_id):
+    class UpdateEventForm(EventForm):
+        category = QuerySelectField(
+            'Update Category',
+            validators=[DataRequired()],
+            query_factory=category_query,
+            get_label='name',
+            allow_blank=True,
+            blank_text='Choose Category',
+            default=Category.query.filter_by(name=default_category_name).first()
+        )
+        tags = QuerySelectMultipleField(
+            'Update Tag(s)',
+            query_factory=tag_query,
+            get_label='name',
+            default=Tag.query.filter(Tag.events.any(id=event_id)).all()
+        )
+
+    return UpdateEventForm
+
+
 class CategoryForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     submit = SubmitField('Create')
