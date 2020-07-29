@@ -2,7 +2,9 @@
 {% block content %}
     {% for event in events %}
         <div>
-            <h3>Title: {{ event.title }}</h3>
+            <h3>
+                <a href="{{ url_for('event', id=event.id) }}">{{ event.title.capitalize() }}</a>
+            </h3>
             <h3>{{ month_name[event.date.month] }} {{ event.date.day }}, {{ event.date.year }}</h3>
             <p>{{ event.description }}</p>
             <small>Category ID: {{ event.category.name }}</small><br>
