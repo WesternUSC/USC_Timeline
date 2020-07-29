@@ -3,7 +3,7 @@
     {% for event in events %}
         <div>
             <h3>
-                <a href="{{ url_for('event', id=event.id) }}">{{ event.title.capitalize() }}</a>
+                <a href="{{ url_for('event', id=event.id) }}">{{ event.title }}</a>
             </h3>
             <h3>{{ month_name[event.date.month] }} {{ event.date.day }}, {{ event.date.year }}</h3>
             <p>{{ event.description }}</p>
