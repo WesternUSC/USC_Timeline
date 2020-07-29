@@ -163,10 +163,7 @@ def update_event(id):
         event.description = form.description.data
         event.external_url = form.external_url.data
         event.category = form.category.data
-        original_event_tags = set(Tag.query.filter(Tag.events.any(id=1)).all())
-        for tag in form.tags.data:
-            if tag not in original_event_tags:
-                event.tags.append(tag)
+        event.tags = form.tags.data
         db.session.commit()
         flash('Event has been updated!', 'success')
         return redirect(url_for('event', id=event.id))
@@ -182,6 +179,23 @@ def update_event(id):
         legend='Update Event',
         cancel_dest=url_for('event', id=event.id),
     )
+
+
+@app.route('/event/<int:id>/delete')
+@login_required
+def delete_event(id):
+    event = Event.query.get_or_404(id)
+    db.session.delete(event)
+    db.session.commit()
+    flash('Event has been deleted!', 'success')
+    return redirect(url_for('index'))
+
+
+@app.route('/event/<int:id>/delete/confirm')
+@login_required
+def delete_event_confirmation(id):
+    event = Event.query.get_or_404(id)
+    return render_template('delete_event_confirmation.html', title='Delete Event Confirmation', event=event)
 
 
 @app.route("/category/new", methods=['GET', 'POST'])
