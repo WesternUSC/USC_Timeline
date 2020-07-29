@@ -129,7 +129,7 @@ class EventForm(FlaskForm):
         get_label='name'
     )
     images = MultipleFileField('Image(s)')
-    submit = SubmitField('Create')
+    submit = SubmitField('Submit')
 
 
 def update_event_form_factory(default_category_name, event_id):
