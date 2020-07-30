@@ -160,4 +160,4 @@ class CategoryForm(FlaskForm):
 
 class TagForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
-    submit = SubmitField('Create')
+    submit = SubmitField('Submit')

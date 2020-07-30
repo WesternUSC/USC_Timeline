@@ -241,20 +241,24 @@ def new_tag():
         db.session.add(tag)
         db.session.commit()
         flash('Tag has been created!', 'success')
-        return redirect(url_for('account'))
+        return redirect(url_for('manage_tags'))
     return render_template(
         'edit_tag.html',
         title='New Tag',
         form=form,
-        legend='New Tag',
-        cancel_dest=url_for('account')
+        legend='New Tag'
     )
 
 
 @app.route("/tag/manage")
 @login_required
 def manage_tags():
-    return render_template('manage_tags.html', title='Manage Tags')
+    tags = Tag.query.all()
+    return render_template(
+        'manage_tags.html',
+        title='Manage Tags',
+        tags=tags
+    )
 
 
 @app.route("/tag/<int:id>/update", methods=['GET', 'POST'])
@@ -266,15 +270,14 @@ def update_tag(id):
         tag.name = form.name.data
         db.session.commit()
         flash('Tag has been updated', 'success')
-        return redirect(url_for('account'))
+        return redirect(url_for('manage_tags'))
     elif request.method == 'GET':
         form.name.data = tag.name
     return render_template(
         'edit_tag.html',
         title='Update Tag',
         form=form,
-        legend='Update Tag',
-        cancel_dest=url_for('account')
+        legend='Update Tag'
     )
 
 

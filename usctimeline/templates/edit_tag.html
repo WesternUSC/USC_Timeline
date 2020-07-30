@@ -4,7 +4,7 @@
         <form action="" method="POST">
             {{ form.hidden_tag() }}
             <fieldset>
-                <legend>New Category</legend>
+                <legend>{{ legend }}</legend>
                 <div>
                     {{ form.name.label(class="css-class-name") }}
                     {% if form.name.errors %}
@@ -23,7 +23,7 @@
                 {{ form.submit(class="css-class-name") }}
             </div>
             <button>
-                <a href="{{ url_for('account') }}">Cancel</a>
+                <a href="{{ url_for('manage_tags') }}">Cancel</a>
             </button>
         </form>
     </div>
