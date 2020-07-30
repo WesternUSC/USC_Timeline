@@ -224,7 +224,12 @@ def update_category(id):
 @app.route("/category/manage")
 @login_required
 def manage_categories():
-    return render_template('manage_categories.html', title='Manage Categories')
+    categories = Category.query.all()
+    return render_template(
+        'manage_categories.html',
+        title='Manage Categories',
+        categories=categories
+    )
 
 
 @app.route("/tag/new", methods=['GET', 'POST'])

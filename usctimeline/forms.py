@@ -155,7 +155,7 @@ def update_event_form_factory(default_category_name, event_id):
 
 class CategoryForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
-    submit = SubmitField('Create')
+    submit = SubmitField('Submit')
 
 
 class TagForm(FlaskForm):
