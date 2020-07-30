@@ -142,7 +142,12 @@ def new_event():
 @app.route("/event/manage")
 @login_required
 def manage_events():
-    return render_template('manage_events.html', title='Manage Events')
+    events = Event.query.all()
+    return render_template(
+        'manage_events.html',
+        title='Manage Events',
+        events=events
+    )
 
 
 @app.route("/event/<int:id>")
