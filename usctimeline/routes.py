@@ -129,7 +129,7 @@ def new_event():
         db.session.add(event)
         db.session.commit()
         flash('Event has been created!', 'success')
-        return redirect(url_for('account'))
+        return redirect(url_for('manage_events'))
     return render_template(
         'edit_event.html',
         title='New Event',
@@ -192,7 +192,7 @@ def delete_event(id):
     db.session.delete(event)
     db.session.commit()
     flash('Event has been deleted!', 'success')
-    return redirect(url_for('index'))
+    return redirect(url_for('manage_events'))
 
 
 @app.route('/event/<int:id>/delete/confirm')
