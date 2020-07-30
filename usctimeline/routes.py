@@ -174,7 +174,6 @@ def update_event(id):
     return render_template(
         'edit_event.html',
         title='Update Event',
-        event=event,
         form=form,
         legend='Update Event',
         cancel_dest=url_for('event', id=event.id),
@@ -198,17 +197,23 @@ def delete_event_confirmation(id):
     return render_template('delete_event_confirmation.html', title='Delete Event Confirmation', event=event)
 
 
-@app.route("/category/new", methods=['GET', 'POST'])
+@app.route("/category/<int:id>/update", methods=['GET', 'POST'])
 @login_required
-def new_category():
+def update_category(id):
+    category = Category.query.get_or_404(id)
     form = CategoryForm()
     if form.validate_on_submit():
-        category = Category(name=form.name.data)
-        db.session.add(category)
+        category.name = form.name.data
         db.session.commit()
-        flash('Category has been created!', 'success')
+        flash('Category has been updated', 'success')
         return redirect(url_for('account'))
-    return render_template('new_category.html', title='New Category', form=form)
+    elif request.method == 'GET':
+        form.name.data = category.name
+    return render_template(
+        'edit_category.html',
+        title='Update Category',
+        form=form
+    )
 
 
 @app.route("/category/manage")
@@ -227,10 +232,58 @@ def new_tag():
         db.session.commit()
         flash('Tag has been created!', 'success')
         return redirect(url_for('account'))
-    return render_template('new_tag.html', title='New Tag', form=form)
+    return render_template(
+        'edit_tag.html',
+        title='New Tag',
+        form=form,
+        legend='New Tag',
+        cancel_dest=url_for('account')
+    )
 
 
 @app.route("/tag/manage")
 @login_required
 def manage_tags():
     return render_template('manage_tags.html', title='Manage Tags')
+
+
+@app.route("/tag/<int:id>/update", methods=['GET', 'POST'])
+@login_required
+def update_tag(id):
+    tag = Tag.query.get_or_404(id)
+    form = TagForm()
+    if form.validate_on_submit():
+        tag.name = form.name.data
+        db.session.commit()
+        flash('Tag has been updated', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.name.data = tag.name
+    return render_template(
+        'edit_tag.html',
+        title='Update Tag',
+        form=form,
+        legend='Update Tag',
+        cancel_dest=url_for('account')
+    )
+
+
+@app.route("/tag/<int:id>/delete")
+@login_required
+def delete_tag(id):
+    tag = Tag.query.get_or_404(id)
+    db.session.delete(tag)
+    db.session.commit()
+    flash('Tag has been deleted', 'success')
+    return redirect(url_for('index'))
+
+
+@app.route("/tag/<int:id>/delete/confirm")
+@login_required
+def delete_tag_confirmation(id):
+    tag = Tag.query.get_or_404(id)
+    return render_template(
+        'delete_tag_confirmation.html',
+        title='Delete Tag Confirmation',
+        tag=tag
+    )
