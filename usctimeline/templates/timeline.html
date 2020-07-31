@@ -6,15 +6,7 @@
                 <a href="{{ url_for('event', id=event.id) }}">{{ event.title }}</a>
             </h3>
             <h3>{{ month_name[event.date.month] }} {{ event.date.day }}, {{ event.date.year }}</h3>
-            <p>{{ event.description }}</p>
             <small>Category: {{ event.category.name }}</small><br>
-            <small>Author: {{ event.author.username }}</small><br>
-            <small>Tag(s):</small>
-            <ul>
-                {% for tag in event.tags %}
-                    <li><small>{{ tag.name }}</small></li>
-                {% endfor %}
-            </ul>
         </div>
     {% endfor %}
 {% endblock content %}
