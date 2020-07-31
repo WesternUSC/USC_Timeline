@@ -11,7 +11,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route("/")
 def index():
-    events = Event.query.all()
+    events = Event.query.order_by(Event.date.asc())
     return render_template('timeline.html', events=events, month_name=month_name)
 
 
@@ -299,4 +299,16 @@ def delete_tag_confirmation(id):
         'delete_tag_confirmation.html',
         title='Delete Tag Confirmation',
         tag=tag
+    )
+
+
+@app.route("/user/<string:username>/posts")
+def user_events(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    events = Event.query.filter_by(author=user).order_by(Event.date.asc())
+    return render_template(
+        'user_events.html',
+        title='User Events',
+        user=user,
+        events=events
     )
