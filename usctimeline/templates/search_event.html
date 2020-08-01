@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div>
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>Search Event</legend>
+            <div>
+                {{ form.title.label(class="css-class-name") }}
+                {% if form.title.errors %}
+                    {{ form.title(class="alert-error css-class-name-2") }}
+                    <div>
+                        {% for error in form.title.errors %}
+                            <span class="alert-error">{{ error }}</span><br>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.title(class="css-class-name-1 css-class-name-2") }}
+                {% endif %}
+            </div>
+            <div>
+                {{ form.from_date.label(class="css-class-name") }}
+                {% if form.from_date.errors %}
+                    {{ form.from_date(class="alert-error css-class-name-2") }}
+                    <div>
+                        {% for error in form.from_date.errors %}
+                            <span class="alert-error">{{ error }}</span><br>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.from_date(class="css-class-name-1 css-class-name-2") }}
+                {% endif %}
+            </div>
+            <div>
+                {{ form.to_date.label(class="css-class-name") }}
+                {% if form.to_date.errors %}
+                    {{ form.to_date(class="alert-error css-class-name-2") }}
+                    <div>
+                        {% for error in form.to_date.errors %}
+                            <span class="alert-error">{{ error }}</span><br>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.to_date(class="css-class-name-1 css-class-name-2") }}
+                {% endif %}
+            </div>
+            <div>
+                {{ form.category.label(class="css-class-name") }}
+                {% if form.category.errors %}
+                    {{ form.category(class="alert-error css-class-name-2") }}
+                    <div>
+                        {% for error in form.category.errors %}
+                            <span class="alert-error">{{ error }}</span><br>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.category(class="css-class-name-1 css-class-name-2") }}
+                {% endif %}
+            </div>
+            <div>
+                {{ form.tags.label(class="css-class-name") }}
+                {% if form.tags.errors %}
+                    {{ form.tags(class="alert-error css-class-name-2") }}
+                    <div>
+                        {% for error in form.tags.errors %}
+                            <span class="alert-error">{{ error }}</span><br>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.tags(class="css-class-name-1 css-class-name-2") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div>
+            {{ form.submit(class="css-class-name") }}
+        </div>
+        <button>
+            <a href="{{ url_for('index') }}">Cancel</a>
+        </button>
+    </form>
+    <div>
+    {% if events %}
+        {% for event in events %}
+            <div>
+                <h3>
+                    <a href="{{ url_for('event', id=event.id) }}">{{ event.title }}</a>
+                </h3>
+                <h3>{{ month_name[event.date.month] }} {{ event.date.day }}, {{ event.date.year }}</h3>
+                <small>Category: {{ event.category.name }}</small><br>
+                {% if event.tags %}
+                    <small>Tag(s)</small>
+                    <ul>
+                        {% for tag in event.tags %}
+                            <li>{{ tag.name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}

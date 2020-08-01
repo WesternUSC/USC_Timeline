@@ -3,7 +3,7 @@ from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, MultipleFileField
 from wtforms.fields.html5 import DateField, URLField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional
 from wtforms.ext.sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
 from usctimeline.models import User, Category, Tag
 from typing import Union
@@ -151,6 +151,33 @@ def update_event_form_factory(default_category_name, event_id):
         )
 
     return UpdateEventForm
+
+
+class SearchEventForm(FlaskForm):
+    title = StringField('Title')
+    from_date = DateField(
+        'From',
+        validators=[Optional()],
+        format='%Y-%m-%d'
+    )
+    to_date = DateField(
+        'To',
+        validators=[Optional()],
+        format='%Y-%m-%d'
+    )
+    category = QuerySelectField(
+        'Category',
+        query_factory=category_query,
+        get_label='name',
+        allow_blank=True,
+        blank_text='Choose Category'
+    )
+    tags = QuerySelectMultipleField(
+        'Tag(s)',
+        query_factory=tag_query,
+        get_label='name'
+    )
+    submit = SubmitField('Search')
 
 
 class CategoryForm(FlaskForm):
