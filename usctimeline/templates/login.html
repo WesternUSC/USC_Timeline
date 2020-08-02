@@ -40,10 +40,10 @@
                 {{ form.submit(class="css-class-name") }}
             </div>
             <button>
-                <a href="{{ url_for('index') }}">Cancel</a>
+                <a href="{{ url_for('main.index') }}">Cancel</a>
             </button>
             <small>
-                <a href="{{ url_for('reset_request') }}">Forgot Password?</a>
+                <a href="{{ url_for('users.reset_request') }}">Forgot Password?</a>
             </small>
         </form>
     </div>

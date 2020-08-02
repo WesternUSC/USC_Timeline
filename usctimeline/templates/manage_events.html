@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
     <button>
-        <a href="{{ url_for('new_event') }}">Create Event</a>
+        <a href="{{ url_for('events.new_event') }}">Create Event</a>
     </button>
     <table>
         <caption>Manage All Events</caption>
@@ -32,10 +32,10 @@
                 </td>
                 <td>{{ event.author.username }}</td>
                 <td>
-                    <a href="{{ url_for('update_event', id=event.id) }}">Update</a>
+                    <a href="{{ url_for('events.update_event', id=event.id) }}">Update</a>
                 </td>
                 <td>
-                    <a href="{{ url_for('delete_event_confirmation', id=event.id) }}">Delete</a>
+                    <a href="{{ url_for('events.delete_event_confirmation', id=event.id) }}">Delete</a>
                 </td>
             </tr>
         {% endfor %}

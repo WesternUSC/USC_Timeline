@@ -15,7 +15,7 @@
         <td>{{ category.id }}</td>
         <td>{{ category.name }}</td>
         <td>
-            <a href="{{ url_for('update_category', id=category.id) }}">Update</a>
+            <a href="{{ url_for('categories.update_category', id=category.id) }}">Update</a>
         </td>
     </tr>
     {% endfor %}
