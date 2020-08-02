@@ -1,21 +1,21 @@
-{% extends 'layout.html' %}
+{% extends 'components/layout.html' %}
 {% block content %}
     <div>
         <form action="" method="POST">
             {{ form.hidden_tag() }}
             <fieldset>
-                <legend>Reset Password</legend>
+                <legend>{{ legend }}</legend>
                 <div>
-                    {{ form.email.label(class="css-class-name") }}
-                    {% if form.email.errors %}
-                        {{ form.email(class="alert-error css-class-name-2") }}
+                    {{ form.name.label(class="css-class-name") }}
+                    {% if form.name.errors %}
+                        {{ form.name(class="alert-error css-class-name-2") }}
                         <div>
-                            {% for error in form.email.errors %}
+                            {% for error in form.name.errors %}
                                 <span class="alert-error">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.email(class="css-class-name-1 css-class-name-2") }}
+                        {{ form.name(class="css-class-name-1 css-class-name-2") }}
                     {% endif %}
                 </div>
             </fieldset>
@@ -23,9 +23,8 @@
                 {{ form.submit(class="css-class-name") }}
             </div>
             <button>
-                <a href="{{ url_for('main.index') }}">Cancel</a>
+                <a href="{{ url_for('tags.manage_tags') }}">Cancel</a>
             </button>
         </form>
     </div>
 {% endblock content %}
-

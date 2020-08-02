@@ -35,7 +35,7 @@ def new_event():
                 if file_ext not in ['.png', '.PNG', 'jpg', '.JPG', '.jpeg', '.JPEG', '.svg', '.SVG']:
                     flash('File does not have an approved extension: jpg, jpeg, png, svg', 'error')
                     return render_template(
-                        'edit_event.html',
+                        'events/edit_event.html',
                         title='New Event',
                         form=form,
                         legend='New Event',
@@ -52,7 +52,7 @@ def new_event():
         flash('Event has been created!', 'success')
         return redirect(url_for('events.manage_events'))
     return render_template(
-        'edit_event.html',
+        'events/edit_event.html',
         title='New Event',
         form=form,
         legend='New Event',
@@ -65,7 +65,7 @@ def new_event():
 def manage_events():
     events = Event.query.all()
     return render_template(
-        'manage_events.html',
+        'events/manage_events.html',
         title='Manage Events',
         events=events
     )
@@ -74,7 +74,7 @@ def manage_events():
 @events.route("/event/<int:id>")
 def event(id):
     current_event = Event.query.get_or_404(id)
-    return render_template('event.html', title='single_event.title', event=current_event)
+    return render_template('events/event.html', title='single_event.title', event=current_event)
 
 
 @events.route("/event/<int:id>/update", methods=['GET', 'POST'])
@@ -98,7 +98,7 @@ def update_event(id):
         form.date.data = event.date
         form.description.data = event.description
     return render_template(
-        'edit_event.html',
+        'events/edit_event.html',
         title='Update Event',
         form=form,
         legend='Update Event',
@@ -120,7 +120,7 @@ def delete_event(id):
 @login_required
 def delete_event_confirmation(id):
     event = Event.query.get_or_404(id)
-    return render_template('delete_event_confirmation.html', title='Delete Event Confirmation', event=event)
+    return render_template('events/delete_event_confirmation.html', title='Delete Event Confirmation', event=event)
 
 
 @events.route("/event/search", methods=['GET', 'POST'])
@@ -168,7 +168,7 @@ def search_event():
             event = Event.query.get(id)
             events.append(event)
     return render_template(
-        'search_event.html',
+        'events/search_event.html',
         title='Search Event',
         form=form,
         events=events,

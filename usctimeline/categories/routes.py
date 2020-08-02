@@ -20,7 +20,7 @@ def update_category(id):
     elif request.method == 'GET':
         form.name.data = category.name
     return render_template(
-        'edit_category.html',
+        'categories/edit_category.html',
         title='Update Category',
         form=form
     )
@@ -31,7 +31,7 @@ def update_category(id):
 def manage_categories():
     categories = Category.query.all()
     return render_template(
-        'manage_categories.html',
+        'categories/manage_categories.html',
         title='Manage Categories',
         categories=categories
     )

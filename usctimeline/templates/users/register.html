@@ -1,13 +1,10 @@
-{% extends 'layout.html' %}
+{% extends 'components/layout.html' %}
 {% block content %}
-    <h1>Account for: {{ current_user.username }}</h1>
-    <h2>Email: {{ current_user.email }}</h2>
-    <img src="{{ profile_img }}" alt="account profile picture">
     <div>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST">
             {{ form.hidden_tag() }}
             <fieldset>
-                <legend>Account Information</legend>
+                <legend>Join Today</legend>
                 <div>
                     {{ form.username.label(class="css-class-name") }}
                     {% if form.username.errors %}
@@ -35,30 +32,39 @@
                     {% endif %}
                 </div>
                 <div>
-                    {{ form.profile_picture.label(class="css-class-name") }}
-                    {{ form.profile_picture(class="css-class-name") }}
-                    {% if form.profile_picture.errors %}
-                        {% for error in form.profile_picture.errors %}
-                            <span class="alert-error">{{ error }}</span><br>
-                        {% endfor %}
+                    {{ form.password.label(class="css-class-name") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="alert-error css-class-name-2") }}
+                        <div>
+                            {% for error in form.password.errors %}
+                                <span class="alert-error">{{ error }}</span><br>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="css-class-name-1 css-class-name-2") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.confirm_password.label(class="css-class-name") }}
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="alert-error css-class-name-2") }}
+                        <div>
+                            {% for error in form.confirm_password.errors %}
+                                <span class="alert-error">{{ error }}</span><br>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="css-class-name-1 css-class-name-2") }}
                     {% endif %}
                 </div>
             </fieldset>
             <div>
                 {{ form.submit(class="css-class-name") }}
             </div>
+            <button>
+                <a href="{{ url_for('main.index') }}">Cancel</a>
+            </button>
         </form>
     </div>
-    <div>
-        <button>
-            <a href="{{ url_for('events.manage_events') }}">Manage Events</a>
-        </button>
-        <button>
-            <a href="{{ url_for('categories.manage_categories') }}">Manage Categories</a>
-        </button>
-        <button>
-            <a href="{{ url_for('tags.manage_tags') }}">Manage Tags</a>
-        </button>
-    </div>
-    <div>
 {% endblock content %}
+

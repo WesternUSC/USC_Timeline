@@ -18,7 +18,7 @@ def new_tag():
         flash('Tag has been created!', 'success')
         return redirect(url_for('tags.manage_tags'))
     return render_template(
-        'edit_tag.html',
+        'tags/edit_tag.html',
         title='New Tag',
         form=form,
         legend='New Tag'
@@ -30,7 +30,7 @@ def new_tag():
 def manage_tags():
     tags = Tag.query.all()
     return render_template(
-        'manage_tags.html',
+        'tags/manage_tags.html',
         title='Manage Tags',
         tags=tags
     )
@@ -49,7 +49,7 @@ def update_tag(id):
     elif request.method == 'GET':
         form.name.data = tag.name
     return render_template(
-        'edit_tag.html',
+        'tags/edit_tag.html',
         title='Update Tag',
         form=form,
         legend='Update Tag'
@@ -71,7 +71,7 @@ def delete_tag(id):
 def delete_tag_confirmation(id):
     tag = Tag.query.get_or_404(id)
     return render_template(
-        'delete_tag_confirmation.html',
+        'tags/delete_tag_confirmation.html',
         title='Delete Tag Confirmation',
         tag=tag
     )

@@ -26,7 +26,7 @@ def register():
         login_user(user)
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('users.account'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('users/register.html', title='Register', form=form)
 
 
 @users.route("/login", methods=['GET', 'POST'])
@@ -43,7 +43,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('main.index'))
         else:
             flash('Login unsuccessful. Please check email and password.', 'error')
-    return render_template('login.html', title='Login', form=form)
+    return render_template('users/login.html', title='Login', form=form)
 
 
 @users.route("/logout")
@@ -69,7 +69,7 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
     profile_img = url_for('static', filename=f'images/profile/{current_user.profile_img}')
-    return render_template('account.html', title='Account', profile_img=profile_img, form=form)
+    return render_template('users/account.html', title='Account', profile_img=profile_img, form=form)
 
 
 @users.route("/user/<string:username>/posts")
@@ -77,7 +77,7 @@ def user_events(username):
     user = User.query.filter_by(username=username).first_or_404()
     events = Event.query.filter_by(author=user).order_by(Event.date.asc())
     return render_template(
-        'user_events.html',
+        'users/user_events.html',
         title='User Events',
         user=user,
         events=events
@@ -95,7 +95,7 @@ def reset_request():
         flash('An email has been sent with instructions to reset your password.', 'success')
         return redirect(url_for('users.login'))
     return render_template(
-        'reset_request.html',
+        'users/reset_request.html',
         title='Request Password Reset',
         form=form
     )
@@ -118,7 +118,7 @@ def reset_password(token):
         flash('Your password has been updated!', 'success')
         return redirect(url_for('users.account'))
     return render_template(
-        'reset_password.html',
+        'users/reset_password.html',
         title='Reset Password',
         form=form
     )
