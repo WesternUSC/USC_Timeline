@@ -188,3 +188,29 @@ class CategoryForm(FlaskForm):
 class TagForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+
+class RequestResetPasswordForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Submit')
+
+    def validate_email(self, email) -> None:
+        user: Union[None, str] = User.query.filter_by(email=email.data).first()
+        if not user:
+            raise ValidationError('There is no account with that email.')
+
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField(
+        'Password', validators=[
+            DataRequired(),
+            Length(min=8, max=30)
+        ]
+    )
+    confirm_password = PasswordField(
+        'Confirm Password', validators=[
+            DataRequired(),
+            EqualTo('password')
+        ]
+    )
+    submit = SubmitField('Reset')

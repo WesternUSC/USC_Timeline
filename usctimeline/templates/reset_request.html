@@ -4,7 +4,7 @@
         <form action="" method="POST">
             {{ form.hidden_tag() }}
             <fieldset>
-                <legend>Sign In</legend>
+                <legend>Reset Password</legend>
                 <div>
                     {{ form.email.label(class="css-class-name") }}
                     {% if form.email.errors %}
@@ -18,23 +18,6 @@
                         {{ form.email(class="css-class-name-1 css-class-name-2") }}
                     {% endif %}
                 </div>
-                <div>
-                    {{ form.password.label(class="css-class-name") }}
-                    {% if form.password.errors %}
-                        {{ form.password(class="alert-error css-class-name-2") }}
-                        <div>
-                            {% for error in form.password.errors %}
-                                <span class="alert-error">{{ error }}</span><br>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.password(class="css-class-name-1 css-class-name-2") }}
-                    {% endif %}
-                </div>
-                <div>
-                    {{ form.remember(class="css-class-name") }}
-                    {{ form.remember.label(class="css-class-name") }}
-                </div>
             </fieldset>
             <div>
                 {{ form.submit(class="css-class-name") }}
@@ -42,9 +25,6 @@
             <button>
                 <a href="{{ url_for('index') }}">Cancel</a>
             </button>
-            <small>
-                <a href="{{ url_for('reset_request') }}">Forgot Password?</a>
-            </small>
         </form>
     </div>
 {% endblock content %}

@@ -2,7 +2,7 @@ import os
 import secrets
 from calendar import month_name
 from flask import render_template, url_for, flash, redirect, request
-from usctimeline import app, db, bcrypt
+from usctimeline import app, db, bcrypt, mail
 from usctimeline.forms import (
     RegistrationForm,
     LoginForm,
@@ -11,11 +11,14 @@ from usctimeline.forms import (
     CategoryForm,
     TagForm,
     update_event_form_factory,
-    SearchEventForm
+    SearchEventForm,
+    RequestResetPasswordForm,
+    ResetPasswordForm
 )
 from usctimeline.models import User, Event, Image, Category, Tag, event_tags, event_images
 from flask_login import login_user, current_user, logout_user, login_required
 from sqlalchemy import and_
+from flask_mail import Message
 
 
 @app.route("/")
@@ -24,24 +27,25 @@ def index():
     return render_template('timeline.html', events=events, month_name=month_name)
 
 
-# @app.route("/register", methods=['GET', 'POST'])
-# def register():
-#     if current_user.is_authenticated:
-#         return redirect(url_for('account'))
-#     form = RegistrationForm()
-#     if form.validate_on_submit():
-#         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-#         user = User(
-#             username=form.username.data,
-#             email=form.email.data,
-#             password=hashed_password
-#         )
-#         db.session.add(user)
-#         db.session.commit()
-#         login_user(user)
-#         flash(f'Account created for {form.username.data}!', 'success')
-#         return redirect(url_for('account'))
-#     return render_template('register.html', title='Register', form=form)
+@login_required
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('account'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(
+            username=form.username.data,
+            email=form.email.data,
+            password=hashed_password
+        )
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+        flash(f'Account created for {form.username.data}!', 'success')
+        return redirect(url_for('account'))
+    return render_template('register.html', title='Register', form=form)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -253,7 +257,7 @@ def search_event():
                     tag_ids.add(event.id)
                 event_ids = event_ids.intersection(tag_ids)
         for id in event_ids:
-            event = Event.query.filter_by(id=id).first()
+            event = Event.query.get(id)
             events.append(event)
     return render_template(
         'search_event.html',
@@ -373,4 +377,60 @@ def user_events(username):
         title='User Events',
         user=user,
         events=events
+    )
+
+
+def send_reset_email(user):
+    token = user.get_reset_token()
+    message = Message(
+        'Password Reset Request',
+        sender='noreply@demo.com',
+        recipients=[user.email]
+    )
+    message.body = f'''
+To reset your password, visit the following link:
+{url_for('reset_password', token=token, _external=True)}
+
+If you did not make this request then simply ignore this email and no changes will be made.
+'''
+    mail.send(message)
+
+
+@app.route("/forgot", methods=['GET', 'POST'])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RequestResetPasswordForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash('An email has been sent with instructions to reset your password.', 'success')
+        return redirect(url_for('login'))
+    return render_template(
+        'reset_request.html',
+        title='Request Password Reset',
+        form=form
+    )
+
+
+@app.route("/reset/<token>", methods=['GET', 'POST'])
+def reset_password(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    user = User.verify_reset_token(token)
+    if not user:
+        flash('That is an invalid or expired.', 'warning')
+        return redirect(url_for('reset_request'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_password
+        db.session.commit()
+        login_user(user)
+        flash('Your password has been updated!', 'success')
+        return redirect(url_for('account'))
+    return render_template(
+        'reset_password.html',
+        title='Reset Password',
+        form=form
     )
