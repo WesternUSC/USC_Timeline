@@ -27,11 +27,9 @@ def index():
     return render_template('timeline.html', events=events, month_name=month_name)
 
 
-@login_required
 @app.route("/register", methods=['GET', 'POST'])
+@login_required
 def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('account'))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
