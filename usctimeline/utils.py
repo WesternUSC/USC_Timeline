@@ -1,15 +1,15 @@
 import os
 import secrets
-from flask import url_for
+from flask import url_for, current_app
 from flask_mail import Message
-from usctimeline import app, mail
+from usctimeline import mail
 
 def save_img_to_file_system(img, dir) -> str:
     random_hex = secrets.token_hex(8)
     _, file_ext = os.path.splitext(img.filename)
     filename = random_hex + file_ext
     directory = f'static/images/{dir}'
-    filepath = os.path.join(app.root_path, directory, filename)
+    filepath = os.path.join(current_app.root_path, directory, filename)
     img.save(filepath)
 
     return filename

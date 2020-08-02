@@ -1,4 +1,5 @@
-from usctimeline import db, login_manager, app
+from flask import current_app
+from usctimeline import db, login_manager
 from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
@@ -30,12 +31,12 @@ class User(db.Model, UserMixin):
     posts = db.relationship('Event', backref='author', lazy=True)
 
     def get_reset_token(self, seconds_until_expire=1800):
-        serializer = Serializer(app.config['SECRET_KEY'], seconds_until_expire)
+        serializer = Serializer(current_app.config['SECRET_KEY'], seconds_until_expire)
         return serializer.dumps({'user_id': self.id}).decode('utf-8')
 
     @staticmethod
     def verify_reset_token(token):
-        serializer = Serializer(app.config['SECRET_KEY'])
+        serializer = Serializer(current_app.config['SECRET_KEY'])
         try:
             user_id = serializer.loads(token)['user_id']
         except:
