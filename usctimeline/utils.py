@@ -4,6 +4,7 @@ from flask import url_for, current_app
 from flask_mail import Message
 from usctimeline import mail
 
+
 def save_img_to_file_system(img, dir) -> str:
     random_hex = secrets.token_hex(8)
     _, file_ext = os.path.splitext(img.filename)
