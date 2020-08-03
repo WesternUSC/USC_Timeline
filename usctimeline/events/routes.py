@@ -21,7 +21,6 @@ def new_event():
             date=form.date.data,
             description=form.description.data,
             external_url=form.external_url.data,
-            author=current_user,
             category=form.category.data
         )
         if form.tags.data:

@@ -28,7 +28,6 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     profile_img = db.Column(db.String(20), nullable=False, default='default.svg')
     password = db.Column(db.String(60), nullable=False)
-    posts = db.relationship('Event', backref='author', lazy=True)
 
     def get_reset_token(self, seconds_until_expire=1800):
         serializer = Serializer(current_app.config['SECRET_KEY'], seconds_until_expire)
@@ -53,7 +52,6 @@ class Event(db.Model):
     date = db.Column(db.Date, nullable=False)
     description = db.Column(db.Text, nullable=False)
     external_url = db.Column(db.Text)
-    author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
 
     def __repr__(self):
@@ -71,7 +69,7 @@ class Image(db.Model):
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120), nullable=False)
+    name = db.Column(db.String(120), unique=True, nullable=False)
     events = db.relationship('Event', backref='category', lazy=True)
 
     def __repr__(self):
@@ -80,7 +78,7 @@ class Category(db.Model):
 
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120), nullable=False)
+    name = db.Column(db.String(120), unique=True, nullable=False)
     events = db.relationship('Event', secondary=event_tags, backref="tags", lazy=True)
 
     def __repr__(self):

@@ -71,18 +71,6 @@ def account():
     return render_template('users/account.html', title='Account', profile_img=profile_img, form=form)
 
 
-@users.route("/user/<string:username>/posts")
-def user_events(username):
-    user = User.query.filter_by(username=username).first_or_404()
-    events = Event.query.filter_by(author=user).order_by(Event.date.asc())
-    return render_template(
-        'users/user_events.html',
-        title='User Events',
-        user=user,
-        events=events
-    )
-
-
 @users.route("/forgot", methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated:
