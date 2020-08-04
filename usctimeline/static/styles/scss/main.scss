@@ -3,3 +3,10 @@
 @import "typography";
 @import "functions";
 @import "mixins";
+
+@import "components/header";
+
+.container {
+  margin: auto;
+  width: 80%;
+}
