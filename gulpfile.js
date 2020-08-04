@@ -3,13 +3,13 @@ let sass = require('gulp-sass')
 
 function processSass() {
     return gulp
-        .src('static/styles/scss/*.scss')
+        .src('usctimeline/static/styles/scss/main.scss')
         .pipe(sass())
-        .pipe(gulp.dest('static/styles/css'))
+        .pipe(gulp.dest('usctimeline/static/styles/'))
 }
 
 function watch() {
-    gulp.watch('static/styles/scss/*.scss', processSass)
+    gulp.watch('usctimeline/static/styles/scss/**/*.scss', gulp.series(processSass))
 }
 
 gulp.task('sass', processSass)
