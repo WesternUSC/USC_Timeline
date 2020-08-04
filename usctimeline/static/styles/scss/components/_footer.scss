@@ -1,0 +1,27 @@
+.footer {
+  background-color: lightgray;
+}
+
+.footer-container {
+  margin: auto;
+  width: 95%;
+  display: flex;
+  height: pxToRem(150px);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.social-media-links-container {
+  width: 30rem;
+}
+
+.social-media-img {
+  max-height: 80px;
+  max-width: 80px;
+}
+
+.social-media-img {
+  margin-left: 2rem;
+  max-height: 40px;
+  max-width: 40px;
+}
