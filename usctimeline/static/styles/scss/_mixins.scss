@@ -1,9 +1,39 @@
+@mixin for-phone-only {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) {
+    @content;
+  }
+}
+
+@mixin for-desktop-up {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin for-large-desktop-up {
+  @media (min-width: 1920px) {
+    @content;
+  }
+}
+
 @mixin grid-container(
   $grid-template-columns: false,
   $grid-column-gap: false,
   $grid-row-gap: false,
   $justify-items: false,
-){
+) {
   display: grid;
 
   @if $grid-template-columns {
@@ -23,7 +53,7 @@
 @mixin flex-container(
   $justify-content: false,
   $align-items: false,
-){
+) {
   display: flex;
   @if $justify-content {
     justify-content: $justify-content;

@@ -5,23 +5,46 @@
 .footer-container {
   margin: auto;
   width: 95%;
-  display: flex;
+}
+
+.footer-items {
+  margin: auto;
+  width: 95%;
   height: pxToRem(150px);
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
+
+  @include for-phone-only {
+    grid-template-columns: 1fr;
+  }
 }
 
-.social-media-links-container {
-  width: 30rem;
+.footer-item-container {
+  width: 100%;
+}
+
+.usc-info-container {
+  @include for-phone-only {
+    justify-self: stretch;
+    text-align: center;
+  }
+}
+
+.social-media-links {
+  display: flex;
+  justify-content: flex-end;
+
+  @include for-phone-only {
+    justify-content: center;
+  }
+}
+
+.social-media-link {
+  margin-left: pxToRem(25px);
+  height: 30px;
 }
 
 .social-media-img {
-  max-height: 80px;
-  max-width: 80px;
-}
-
-.social-media-img {
-  margin-left: 2rem;
-  max-height: 40px;
-  max-width: 40px;
+  height: 100%;
 }
