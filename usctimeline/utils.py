@@ -1,19 +1,24 @@
 import os
-import secrets
+# import secrets
 from flask import url_for, current_app
 from flask_mail import Message
 from usctimeline import mail
+from usctimeline.models import Image
 
 
 def save_img_to_file_system(img, dir) -> str:
-    random_hex = secrets.token_hex(8)
-    _, file_ext = os.path.splitext(img.filename)
-    filename = random_hex + file_ext
+    # random_hex = secrets.token_hex(8)
+    # filename, file_ext = os.path.splitext(img.filename)
+    images = Image.query.all()
+    for image in images:
+        if image.filename == img.filename:
+            return image
+    # filename = random_hex + file_ext
     directory = f'static/images/{dir}'
-    filepath = os.path.join(current_app.root_path, directory, filename)
+    filepath = os.path.join(current_app.root_path, directory, img.filename)
     img.save(filepath)
 
-    return filename
+    return Image(filename=img.filename)
 
 
 def send_reset_email(user):

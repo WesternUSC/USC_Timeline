@@ -26,11 +26,9 @@ def new_event():
         if form.tags.data:
             for tag in form.tags.data:
                 event.tags.append(tag)
-        if form.images.data[0].filename == '':
-            pass  # no images uploaded
-        else:
+        if form.images.data[0].filename != '':
             for image in form.images.data:
-                file_ext = os.path.splitext(image.filename)[1]
+                filename, file_ext = os.path.splitext(image.filename)
                 if file_ext not in ['.png', '.PNG', 'jpg', '.JPG', '.jpeg', '.JPEG', '.svg', '.SVG']:
                     flash('File does not have an approved extension: jpg, jpeg, png, svg', 'error')
                     return render_template(
@@ -40,12 +38,9 @@ def new_event():
                         legend='New Event',
                         cancel_dest=url_for('users.account')
                     )
-            for image in form.images.data:
-                new_img_filename = save_img_to_file_system(image, 'event')
-                image = Image(
-                    filename=new_img_filename
-                )
-                event.images.append(image)
+                else:
+                    img = save_img_to_file_system(image, 'event')
+                    event.images.append(img)
         db.session.add(event)
         db.session.commit()
         flash('Event has been created!', 'success')
@@ -89,6 +84,21 @@ def update_event(id):
         event.external_url = form.external_url.data
         event.category = form.category.data
         event.tags = form.tags.data
+        if form.images.data[0].filename != '':
+            for image in form.images.data:
+                filename, file_ext = os.path.splitext(image.filename)
+                if file_ext not in ['.png', '.PNG', 'jpg', '.JPG', '.jpeg', '.JPEG', '.svg', '.SVG']:
+                    flash('File does not have an approved extension: jpg, jpeg, png, svg', 'error')
+                    return render_template(
+                        'events/edit_event.html',
+                        title='Update Event',
+                        form=form,
+                        legend='Update Event',
+                        cancel_dest=url_for('events.update_event', id=event.id)
+                    )
+                else:
+                    img = save_img_to_file_system(image, 'event')
+                    event.images.append(img)
         db.session.commit()
         flash('Event has been updated!', 'success')
         return redirect(url_for('events.event', id=event.id))
