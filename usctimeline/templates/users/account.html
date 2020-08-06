@@ -2,7 +2,6 @@
 {% block content %}
     <h1>Account for: {{ current_user.username }}</h1>
     <h2>Email: {{ current_user.email }}</h2>
-    <img src="{{ profile_img }}" alt="account profile picture">
     <div>
         <form action="" method="POST" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
@@ -32,15 +31,6 @@
                         </div>
                     {% else %}
                         {{ form.email(class="css-class-name-1 css-class-name-2") }}
-                    {% endif %}
-                </div>
-                <div>
-                    {{ form.profile_picture.label(class="css-class-name") }}
-                    {{ form.profile_picture(class="css-class-name") }}
-                    {% if form.profile_picture.errors %}
-                        {% for error in form.profile_picture.errors %}
-                            <span class="alert-error">{{ error }}</span><br>
-                        {% endfor %}
                     {% endif %}
                 </div>
             </fieldset>

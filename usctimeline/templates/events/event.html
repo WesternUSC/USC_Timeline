@@ -1,10 +1,31 @@
 {% extends 'components/layout.html' %}
 {% block content %}
-    <h1>{{ event.title }}</h1>
-    <button>
-        <a href="{{ url_for('events.update_event', id=event.id) }}">Update</a>
-    </button>
-    <button>
-        <a href="{{ url_for('events.delete_event_confirmation', id=event.id) }}">Delete</a>
-    </button>
+    <div class="single-event-page-container">
+        {% if current_user.is_authenticated %}
+            <div class="edit-event-buttons">
+                <button>
+                    <a href="{{ url_for('events.update_event', id=event.id) }}">Update</a>
+                </button>
+                <button>
+                    <a href="{{ url_for('events.delete_event_confirmation', id=event.id) }}">Delete</a>
+                </button>
+            </div>
+        {% endif %}
+        <div class="category-label">
+            <span class="category-label-text">USC</span>
+        </div>
+        <h1 class="event-title-text">{{ event.title }}</h1>
+        <div class="event-images">
+            {% for image in event.images %}
+                <div class="event-image">
+                    <img src="{{ url_for('static', filename='images/event/' + image.filename) }}" alt="event image"
+                         class="image">
+                </div>
+            {% endfor %}
+        </div>
+        <div class="event-description-container">
+            <h2>Description:</h2>
+            <p class="event-description-text">{{ event.description }}</p>
+        </div>
+    </div>
 {% endblock content %}

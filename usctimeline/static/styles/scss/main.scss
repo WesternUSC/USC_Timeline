@@ -7,7 +7,5 @@
 @import "components/header";
 @import "components/footer";
 
-.container {
-  margin: auto;
-  width: 80%;
-}
+@import "pages/timeline";
+@import "pages/event";

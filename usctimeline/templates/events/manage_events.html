@@ -30,7 +30,6 @@
                         {% endif %}
                     {% endfor %}
                 </td>
-                <td>{{ event.author.username }}</td>
                 <td>
                     <a href="{{ url_for('events.update_event', id=event.id) }}">Update</a>
                 </td>
