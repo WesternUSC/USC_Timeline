@@ -1,6 +1,20 @@
 {% extends 'components/layout.html' %}
 {% block content %}
     <div class="container">
+        <div class="category-info-container">
+            <div class="category-info-item">
+                <span class="dot usc-dot"></span>
+                <h4 class="category-info-subheading">USC</h4>
+            </div>
+            <div class="category-info-item">
+                <span class="dot statistics-dot"></span>
+                <h4 class="category-info-subheading">Statistics</h4>
+            </div>
+            <div class="category-info-item">
+                <span class="dot culture-dot"></span>
+                <h4 class="category-info-subheading">Culture</h4>
+            </div>
+        </div>
         <div class="timeline">
             {% for year, events_per_month in events_per_year.items() %}
                 <div class="year-container">

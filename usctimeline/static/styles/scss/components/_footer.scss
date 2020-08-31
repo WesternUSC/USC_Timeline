@@ -1,5 +1,5 @@
 .footer {
-  background-color: lightgray;
+  background-color: $off-white;
 }
 
 .footer-container {
@@ -29,6 +29,10 @@
     justify-self: stretch;
     text-align: center;
   }
+}
+
+.usc-info-item {
+  margin-bottom: 0.5rem;
 }
 
 .social-media-links {

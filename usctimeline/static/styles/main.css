@@ -36,7 +36,7 @@ ol, ul {
 *, *::before, *::after {
   box-sizing: inherit; }
 
-h1, h2, h3, h4, h5, h6, p, a, fieldset {
+h1, h2, h3, h4, h5, h6, p, b, a, fieldset {
   font-family: "Roboto", sans-serif; }
 
 h1 {
@@ -61,7 +61,7 @@ p {
   font-size: 1rem; }
 
 .header {
-  background-color: lightgray; }
+  background-color: #EFF1F3; }
 
 .nav {
   margin: auto;
@@ -83,7 +83,7 @@ p {
   margin-left: 0.4375rem; }
 
 .footer {
-  background-color: lightgray; }
+  background-color: #EFF1F3; }
 
 .footer-container {
   margin: auto;
@@ -107,6 +107,9 @@ p {
   .usc-info-container {
     justify-self: stretch;
     text-align: center; } }
+
+.usc-info-item {
+  margin-bottom: 0.5rem; }
 
 .social-media-links {
   display: flex;
@@ -132,20 +135,54 @@ p {
     .container {
       width: 107.5rem; } }
 
+.category-info-heading {
+  text-align: center;
+  margin-bottom: 1.5rem; }
+
+.category-info-container {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-around; }
+  @media (max-width: 599px) {
+    .category-info-container {
+      display: block;
+      text-align: left; } }
+
+.dot {
+  height: 1.25rem;
+  width: 1.25rem;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block; }
+
+.usc-dot {
+  background-color: #7B2CBF; }
+
+.statistics-dot {
+  background-color: #77966D; }
+
+.culture-dot {
+  background-color: #F78E69; }
+
+.category-info-subheading {
+  display: inline-block;
+  margin-left: 0.5rem; }
+
 .timeline {
+  margin: 3rem 0 5rem 0;
   padding: 1rem;
   border-radius: 0.9375rem;
   box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.19), 0 0.375rem 0.375rem rgba(0, 0, 0, 0.23);
-  background-color: lightgray; }
+  background-color: #EFF1F3; }
 
 .usc-event {
-  background-color: mediumpurple; }
+  background-color: #ad72df; }
 
 .statistics-event {
-  background-color: darkseagreen; }
+  background-color: #aec1a8; }
 
 .culture-event {
-  background-color: orange; }
+  background-color: #fcd7ca; }
 
 .year {
   font-size: 3.157rem; }
@@ -190,6 +227,13 @@ p {
   padding-top: 1rem;
   min-height: 3.125rem;
   text-align: center; }
+
+.event-link {
+  text-decoration: none;
+  color: #000000;
+  font-weight: 400; }
+  .event-link:hover {
+    font-weight: 700; }
 
 @media (max-width: 599px) {
   .hidden {
