@@ -1,8 +1,9 @@
+@import "fonts";
 @import "resets";
 @import "variables";
-@import "typography";
 @import "functions";
 @import "mixins";
+@import "global";
 
 @import "components/header";
 @import "components/footer";

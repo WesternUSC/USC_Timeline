@@ -1,5 +1,7 @@
-@function pxToRem($px) {
-  $rem: $px / 16px;
-
-  @return #{$rem}rem;
+@function pxToRem($size, $root-size: false) {
+  @if $root-size {
+    @return $size / $root-size * 1rem;
+  } @else {
+    @return $size / 16px * 1rem;
+  }
 }

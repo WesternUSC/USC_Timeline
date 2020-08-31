@@ -62,5 +62,5 @@ names. For example, 'Science,Sports,Art'."
 
 app = create_app()
 with app.app_context():
-    populate_tags('data/tags.json')
+    # populate_tags('data/tags.json')
     populate_events('data/events.json')
