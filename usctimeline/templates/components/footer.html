@@ -1,34 +1,41 @@
 <footer class="footer">
-    <div class="footer-container">
-        <div class="footer-items">
-            <div class="footer-item-container usc-info-container">
-                <p class="usc-info-item"><b>USC Main Office</b></p>
-                <p class="usc-info-item">Room 340, UCC Building</p>
-                <p class="usc-info-item">Western University</p>
-                <p class="usc-info-item">London, ON N6A 3K7</p>
+    <div class="container">
+        <div class="footer-grid-container">
+            <div class="footer-usc-info">
+                <p>
+                    <b>USC Main Office</b><br>
+                    Room 340, UCC Building<br>
+                    Western University<br>
+                    London, ON. N6A 3K7<br>
+                </p>
             </div>
-            <div class="footer-item-container social-media-links">
-                <a href="https://www.facebook.com/westernusc" class="social-media-link">
-                    <img src="{{ url_for('static', filename='images/social-media/facebook.svg') }}" alt="Facebook link"
-                         class="social-media-img">
+            <div class="footer-social-icon-container">
+                <a class="footer-social-icon" href="https://www.facebook.com/westernusc" target="_blank"
+                   rel="noopener noreferrer">
+                    <img class="social-icon-img"
+                         src="{{ url_for('static', filename='images/social-media/facebook.svg') }}" alt="USC Facebook">
                 </a>
-                <a href="https://www.instagram.com/westernusc" class="social-media-link">
-                    <img src="{{ url_for('static', filename='images/social-media/instagram.svg') }}"
-                         alt="Instagram link"
-                         class="social-media-img">
+                <a class="footer-social-icon" href="https://www.twitter.com/WesternUSC" target="_blank"
+                   rel="noopener noreferrer">
+                    <img class="social-icon-img"
+                         src="{{ url_for('static', filename='images/social-media/twitter.svg') }}" alt="USC Twitter">
                 </a>
-                <a href="https://www.twitter.com/WesternUSC" class="social-media-link">
-                    <img src="{{ url_for('static', filename='images/social-media/twitter.svg') }}" alt="Twitter link"
-                         class="social-media-img">
+                <a class="footer-social-icon" href="https://www.youtube.com/channel/UCjKeiAjymHZnt61ePEzpxVA"
+                   target="_blank" rel="noopener noreferrer">
+                    <img class="social-icon-img"
+                         src="{{ url_for('static', filename='images/social-media/youtube.svg') }}" alt="USC Youtube">
                 </a>
-                <a href="https://www.youtube.com/channel/UCjKeiAjymHZnt61ePEzpxVA" class="social-media-link">
-                    <img src="{{ url_for('static', filename='images/social-media/youtube.svg') }}" alt="YouTube link"
-                         class="social-media-img">
+                <a class="footer-social-icon" href="https://www.instagram.com/westernusc" target="_blank"
+                   rel="noopener noreferrer">
+                    <img class="social-icon-img"
+                         src="{{ url_for('static', filename='images/social-media/instagram.svg') }}"
+                         alt="USC Instagram">
                 </a>
-                <a href="https://www.linkedin.com/company/university-students%27%E2%80%8B-council-at-the-university-of-western-ontario"
-                   class="social-media-link">
-                    <img src="{{ url_for('static', filename='images/social-media/linkedin.svg') }}" alt="LinkedIn link"
-                         class="social-media-img">
+                <a class="footer-social-icon"
+                   href="https://www.linkedin.com/company/university-students%27%E2%80%8B-council-at-the-university-of-western-ontario"
+                   target="_blank" rel="noopener noreferrer">
+                    <img class="social-icon-img"
+                         src="{{ url_for('static', filename='images/social-media/linkedin.svg') }}" alt="USC LinkedIn">
                 </a>
             </div>
         </div>
