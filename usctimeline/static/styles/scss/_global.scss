@@ -79,7 +79,7 @@ p {
 }
 
 .container {
-  margin: auto;
+  margin: 0 auto;
 
   @include for-phone-only {
     width: 90%;

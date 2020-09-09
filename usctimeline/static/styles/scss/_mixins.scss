@@ -74,3 +74,85 @@
     align-items: $align-items;
   }
 }
+
+@mixin btn-base(
+  $background-color,
+  $border-color,
+  $color
+) {
+  display: inline-block;
+  background-color: $background-color;
+  border: pxToRem(2px) solid $border-color;
+  border-radius: $border-radius;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: $color;
+  font-weight: 700;
+}
+
+@mixin btn-sm {
+  padding: 0.5rem;
+}
+
+@mixin btn-med {
+  padding: 0.75rem;
+}
+
+@mixin btn-lg {
+  padding: 1rem;
+}
+
+@mixin btn-primary {
+  @include btn-base(
+          $border-color: $dark-purple,
+          $background-color: $dark-purple,
+          $color: $white
+  );
+
+  &:hover {
+    background-color: $white;
+    color: $dark-purple;
+    border-color: $dark-purple;
+    transition: 0.3s;
+  }
+}
+
+@mixin btn-secondary {
+  @include btn-base(
+          $border-color: $black,
+          $background-color: $off-white,
+          $color: $black
+  );
+
+  &:hover {
+    background-color: $black;
+    color: $white;
+    border-color: $black;
+    transition: 0.3s;
+  }
+}
+
+@mixin btn-primary-sm {
+  @include btn-primary;
+  @include btn-sm;
+}
+
+@mixin btn-primary-lg {
+  @include btn-primary;
+  @include btn-lg;
+}
+
+@mixin btn-secondary-sm {
+  @include btn-secondary;
+  @include btn-sm;
+}
+
+@mixin btn-secondary-med {
+  @include btn-secondary;
+  @include btn-med;
+}
+
+@mixin btn-secondary-lg {
+  @include btn-secondary;
+  @include btn-lg;
+}

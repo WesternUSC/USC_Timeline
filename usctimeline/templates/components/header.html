@@ -1,18 +1,17 @@
 <header class="header">
-    <nav class="nav">
-        <a href="{{ url_for('main.index') }}">
-            <img src="{{ url_for('static', filename='images/icons/usc_logo.png') }}" alt="home icon" class="nav-img">
+    <div class="container header-container">
+        <a class="header-logo-container" href="{{ url_for('main.index') }}">
+            <img src="{{ url_for('static', filename='images/icons/usc_logo.png') }}" alt="USC logo"
+                 class="header-logo-img">
         </a>
-        <div>
-            <ul>
-                <li class="nav-item"><a href="{{ url_for('events.search_event') }}">Search</a></li>
-                {% if current_user.is_authenticated %}
-                    <li class="nav-item"><a href="{{ url_for('users.account') }}">Account</a></li>
-                    <li class="nav-item"><a href="{{ url_for('users.logout') }}">Logout</a></li>
-                {% else %}
-                    <li class="nav-item"><a href="{{ url_for('users.login') }}">Sign In</a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
+        <nav>
+            <a class="header-nav-link" href="{{ url_for('events.search_event') }}">Search</a>
+            {% if current_user.is_authenticated %}
+                <a class="header-nav-link" href="{{ url_for('users.account') }}">Account</a>
+                <a class="header-nav-link" href="{{ url_for('users.logout') }}">Logout</a>
+            {% else %}
+                <a class="header-nav-link" href="{{ url_for('users.login') }}">Sign In</a>
+            {% endif %}
+        </nav>
+    </div>
 </header>
