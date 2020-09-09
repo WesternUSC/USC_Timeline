@@ -294,3 +294,34 @@ p {
 
 .event-description-text {
   text-align: center; }
+
+.search-container {
+  margin: auto;
+  width: 95%; }
+  @media (min-width: 1200px) {
+    .search-container {
+      width: 68.75rem; } }
+  @media (min-width: 1920px) {
+    .search-container {
+      width: 107.5rem; } }
+
+.search-event-form-fieldset {
+  margin: 0;
+  border: 0;
+  padding: 0; }
+
+.search-event-form-legend {
+  font-size: 3.157rem;
+  margin-bottom: 2rem; }
+
+.search-event-form-element {
+  margin-bottom: 2rem; }
+
+.search-event-form-label {
+  margin-bottom: 0.5rem;
+  display: block;
+  font-size: 1.777rem;
+  width: 8rem; }
+
+.search-event-form-date-container {
+  display: flex; }

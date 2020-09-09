@@ -1,0 +1,57 @@
+.search-container {
+  margin: auto;
+  width: 95%;
+
+  @include for-desktop-up {
+    width: pxToRem(1100px);
+  }
+
+  @include for-large-desktop-up {
+    width: pxToRem(1720px);
+  }
+}
+
+.search-event-form {
+}
+
+.search-event-form-fieldset {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+.search-event-form-legend {
+  font-size: $h2;
+  margin-bottom: 2rem;
+}
+
+.search-event-form-element {
+  margin-bottom: 2rem;
+}
+
+.search-event-form-label {
+  margin-bottom: 0.5rem;
+  display: block;
+  font-size: $h4;
+  width: 8rem;
+}
+
+.search-event-form-date-container {
+  display: flex;
+}
+
+.title-input {
+}
+
+.from-date-input {
+}
+
+.to-date-input {
+}
+
+.category-input {
+}
+
+.tag-input {
+}
+

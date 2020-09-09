@@ -1,78 +1,80 @@
 {% extends 'components/layout.html' %}
 {% block content %}
-    <div>
-    <form action="" method="POST">
+    <div class="search-container">
+    <form class="search-event-form" action="" method="POST">
         {{ form.hidden_tag() }}
-        <fieldset>
-            <legend>Search Event</legend>
-            <div>
-                {{ form.title.label(class="css-class-name") }}
+        <fieldset class="search-event-form-fieldset">
+            <legend class="search-event-form-legend">Search Event</legend>
+            <div class="search-event-form-element">
+                {{ form.title.label(class="search-event-form-label title-label") }}
                 {% if form.title.errors %}
-                    {{ form.title(class="alert-error css-class-name-2") }}
+                    {{ form.title(class="search-event-form-input title-input") }}
                     <div>
                         {% for error in form.title.errors %}
                             <span class="alert-error">{{ error }}</span><br>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.title(class="css-class-name-1 css-class-name-2") }}
+                    {{ form.title(class="search-event-form-input title-input") }}
                 {% endif %}
             </div>
-            <div>
-                {{ form.from_date.label(class="css-class-name") }}
-                {% if form.from_date.errors %}
-                    {{ form.from_date(class="alert-error css-class-name-2") }}
-                    <div>
-                        {% for error in form.from_date.errors %}
-                            <span class="alert-error">{{ error }}</span><br>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.from_date(class="css-class-name-1 css-class-name-2") }}
-                {% endif %}
+            <div class="search-event-form-date-container">
+                <div class="search-event-form-element search-event-form-date">
+                    {{ form.from_date.label(class="search-event-form-label") }}
+                    {% if form.from_date.errors %}
+                        {{ form.from_date(class="search-event-form-input from-date-input") }}
+                        <div>
+                            {% for error in form.from_date.errors %}
+                                <span class="alert-error">{{ error }}</span><br>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.from_date(class="search-event-form-input from-date-input") }}
+                    {% endif %}
+                </div>
+                <div class="search-event-form-element search-event-form-date">
+                    {{ form.to_date.label(class="search-event-form-label") }}
+                    {% if form.to_date.errors %}
+                        {{ form.to_date(class="search-event-form-input to-date-input") }}
+                        <div>
+                            {% for error in form.to_date.errors %}
+                                <span class="alert-error">{{ error }}</span><br>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.to_date(class="search-event-form-input to-date-input") }}
+                    {% endif %}
+                </div>
             </div>
-            <div>
-                {{ form.to_date.label(class="css-class-name") }}
-                {% if form.to_date.errors %}
-                    {{ form.to_date(class="alert-error css-class-name-2") }}
-                    <div>
-                        {% for error in form.to_date.errors %}
-                            <span class="alert-error">{{ error }}</span><br>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.to_date(class="css-class-name-1 css-class-name-2") }}
-                {% endif %}
-            </div>
-            <div>
-                {{ form.category.label(class="css-class-name") }}
+            <div class="search-event-form-element">
+                {{ form.category.label(class="search-event-form-label") }}
                 {% if form.category.errors %}
-                    {{ form.category(class="alert-error css-class-name-2") }}
+                    {{ form.category(class="search-event-form-input category-input") }}
                     <div>
                         {% for error in form.category.errors %}
                             <span class="alert-error">{{ error }}</span><br>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.category(class="css-class-name-1 css-class-name-2") }}
+                    {{ form.category(class="search-event-form-input category-input") }}
                 {% endif %}
             </div>
-            <div>
-                {{ form.tags.label(class="css-class-name") }}
+            <div class="search-event-form-element">
+                {{ form.tags.label(class="search-event-form-label") }}
                 {% if form.tags.errors %}
-                    {{ form.tags(class="alert-error css-class-name-2") }}
+                    {{ form.tags(class="search-event-form-input tag-input") }}
                     <div>
                         {% for error in form.tags.errors %}
                             <span class="alert-error">{{ error }}</span><br>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.tags(class="css-class-name-1 css-class-name-2") }}
+                    {{ form.tags(class="search-event-form-input tag-input") }}
                 {% endif %}
             </div>
         </fieldset>
         <div>
-            {{ form.submit(class="css-class-name") }}
+            {{ form.submit() }}
         </div>
         <button>
             <a href="{{ url_for('main.index') }}">Cancel</a>
