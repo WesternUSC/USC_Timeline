@@ -1,31 +1,99 @@
-h1, h2, h3, h4, h5, h6, p, b, a, fieldset {
+body {
+  background-color: $off-white;
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-family: "Roboto", sans-serif;
+  line-height: $line-height;
+  margin-bottom: 1.25rem;
+}
+
+a {
   font-family: "Roboto", sans-serif;
 }
 
 h1 {
-  font-size: $h1;
+  @include for-phone-only {
+    font-size: $h1-small;
+  }
+
+  @include for-tablet-portrait-up {
+    font-size: $h1-small;
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: $h1-large;
+  }
 }
 
 h2 {
-  font-size: $h2;
+  @include for-phone-only {
+    font-size: $h2-small;
+  }
+
+  @include for-tablet-portrait-up {
+    font-size: $h2-small;
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: $h2-large;
+  }
 }
 
 h3 {
-  font-size: $h3;
+  @include for-phone-only {
+    font-size: $h3-small;
+  }
+
+  @include for-tablet-portrait-up {
+    font-size: $h3-small;
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: $h3-large;
+  }
 }
 
 h4 {
-  font-size: $h4;
-}
+  @include for-phone-only {
+    font-size: $h4-small;
+  }
 
-h5 {
-  font-size: $h5;
-}
+  @include for-tablet-portrait-up {
+    font-size: $h4-small;
+  }
 
-h6 {
-  font-size: $h6;
+  @include for-tablet-landscape-up {
+    font-size: $h4-large;
+  }
 }
 
 p {
   font-size: $base;
+}
+
+.container {
+  margin: auto;
+
+  @include for-phone-only {
+    width: 90%;
+  }
+
+  @include for-tablet-portrait-up {
+    width: 85%;
+  }
+
+  @include for-tablet-landscape-up {
+    width: pxToRem(800px);
+  }
+
+  @include for-desktop-up {
+    width: pxToRem(1100px);
+  }
 }
