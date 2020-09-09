@@ -61,15 +61,15 @@
 }
 
 .usc-event {
-  background-color: lighten($usc-purple, 20%);
+  background-color: $usc-purple;
 }
 
 .statistics-event {
-  background-color: lighten($statistics-green, 20%);
+  background-color: $statistics-green;
 }
 
 .culture-event {
-  background-color: lighten($culture-orange, 20%);
+  background-color: $culture-orange;
 }
 
 .year {

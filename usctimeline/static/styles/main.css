@@ -16,7 +16,7 @@
   font-weight: 700;
   font-style: normal; }
 
-html, body, div, span, h1, h2, h3, h4, h5, h6, p, img, ol, ul, li {
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, img, ol, ul, li, fieldset {
   margin: 0;
   padding: 0;
   border: 0;
@@ -36,32 +36,90 @@ ol, ul {
 *, *::before, *::after {
   box-sizing: inherit; }
 
-h1, h2, h3, h4, h5, h6, p, b, a, fieldset {
+body {
+  background-color: #FAFAFA; }
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+
+h1, h2, h3, h4, h5, h6, p {
+  font-family: "Roboto", sans-serif;
+  line-height: 140%;
+  margin-bottom: 1.25rem; }
+
+a {
   font-family: "Roboto", sans-serif; }
 
-h1 {
-  font-size: 4.209rem; }
+@media (max-width: 599px) {
+  h1 {
+    font-size: 3rem; } }
 
-h2 {
-  font-size: 3.157rem; }
+@media (min-width: 600px) {
+  h1 {
+    font-size: 3rem; } }
 
-h3 {
-  font-size: 2.369rem; }
+@media (min-width: 900px) {
+  h1 {
+    font-size: 4rem; } }
 
-h4 {
-  font-size: 1.777rem; }
+@media (max-width: 599px) {
+  h2 {
+    font-size: 2rem; } }
 
-h5 {
-  font-size: 1.333rem; }
+@media (min-width: 600px) {
+  h2 {
+    font-size: 2rem; } }
 
-h6 {
-  font-size: 1rem; }
+@media (min-width: 900px) {
+  h2 {
+    font-size: 3rem; } }
+
+@media (max-width: 599px) {
+  h3 {
+    font-size: 1.5rem; } }
+
+@media (min-width: 600px) {
+  h3 {
+    font-size: 1.5rem; } }
+
+@media (min-width: 900px) {
+  h3 {
+    font-size: 2rem; } }
+
+@media (max-width: 599px) {
+  h4 {
+    font-size: 1.25rem; } }
+
+@media (min-width: 600px) {
+  h4 {
+    font-size: 1.25rem; } }
+
+@media (min-width: 900px) {
+  h4 {
+    font-size: 1.5rem; } }
 
 p {
-  font-size: 1rem; }
+  font-size: 16px; }
+
+.container {
+  margin: auto; }
+  @media (max-width: 599px) {
+    .container {
+      width: 90%; } }
+  @media (min-width: 600px) {
+    .container {
+      width: 85%; } }
+  @media (min-width: 900px) {
+    .container {
+      width: 50rem; } }
+  @media (min-width: 1200px) {
+    .container {
+      width: 68.75rem; } }
 
 .header {
-  background-color: #EFF1F3; }
+  background-color: #FAFAFA; }
 
 .nav {
   margin: auto;
@@ -83,7 +141,7 @@ p {
   margin-left: 0.4375rem; }
 
 .footer {
-  background-color: #EFF1F3; }
+  background-color: #FAFAFA; }
 
 .footer-container {
   margin: auto;
@@ -156,13 +214,13 @@ p {
   display: inline-block; }
 
 .usc-dot {
-  background-color: #7B2CBF; }
+  background-color: #C7B0E8; }
 
 .statistics-dot {
-  background-color: #77966D; }
+  background-color: #B0E8C7; }
 
 .culture-dot {
-  background-color: #F78E69; }
+  background-color: #E8C7B0; }
 
 .category-info-subheading {
   display: inline-block;
@@ -173,22 +231,22 @@ p {
   padding: 1rem;
   border-radius: 0.9375rem;
   box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.19), 0 0.375rem 0.375rem rgba(0, 0, 0, 0.23);
-  background-color: #EFF1F3; }
+  background-color: #FAFAFA; }
 
 .usc-event {
-  background-color: #ad72df; }
+  background-color: #C7B0E8; }
 
 .statistics-event {
-  background-color: #aec1a8; }
+  background-color: #B0E8C7; }
 
 .culture-event {
-  background-color: #fcd7ca; }
+  background-color: #E8C7B0; }
 
 .year {
-  font-size: 3.157rem; }
+  font-size: 1rem; }
   @media (min-width: 900px) {
     .year {
-      font-size: 4.209rem; } }
+      font-size: 1rem; } }
 
 .months-container {
   margin: 1rem 0;
@@ -200,7 +258,7 @@ p {
   border-top: 0.125rem solid #000000;
   padding-top: 0.3125rem;
   text-transform: uppercase;
-  font-size: 1.777rem; }
+  font-size: 1rem; }
 
 .event-container {
   border-left: 0.25rem solid #000000; }
@@ -212,7 +270,7 @@ p {
   padding-top: 1rem;
   min-width: 3rem;
   font-family: "Roboto", sans-serif;
-  font-size: 1.333rem;
+  font-size: 1rem;
   font-weight: 700; }
 
 .event-categories {
@@ -311,7 +369,7 @@ p {
   padding: 0; }
 
 .search-event-form-legend {
-  font-size: 3.157rem;
+  font-size: 1rem;
   margin-bottom: 2rem; }
 
 .search-event-form-element {
@@ -320,7 +378,7 @@ p {
 .search-event-form-label {
   margin-bottom: 0.5rem;
   display: block;
-  font-size: 1.777rem;
+  font-size: 1rem;
   width: 8rem; }
 
 .search-event-form-date-container {
