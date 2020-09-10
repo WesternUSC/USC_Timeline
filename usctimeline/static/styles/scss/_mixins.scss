@@ -83,7 +83,7 @@
   display: inline-block;
   background-color: $background-color;
   border: pxToRem(2px) solid $border-color;
-  border-radius: $border-radius;
+  border-radius: $border-radius-1;
   font-family: "Roboto", sans-serif;
   text-decoration: none;
   color: $color;
@@ -110,7 +110,7 @@
   );
 
   &:hover {
-    background-color: $white;
+    background-color: $background-color;
     color: $dark-purple;
     border-color: $dark-purple;
     transition: 0.3s;
@@ -120,7 +120,7 @@
 @mixin btn-secondary {
   @include btn-base(
           $border-color: $black,
-          $background-color: $off-white,
+          $background-color: $background-color,
           $color: $black
   );
 

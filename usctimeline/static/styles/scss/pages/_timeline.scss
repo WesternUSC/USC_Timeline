@@ -1,63 +1,58 @@
-.container {
-  margin: auto;
-  width: 95%;
-
-  @include for-desktop-up {
-    width: pxToRem(1100px);
-  }
-
-  @include for-large-desktop-up {
-    width: pxToRem(1720px);
-  }
+.category-info-container {
+  padding: 3rem 0;
 }
 
 .category-info-heading {
   text-align: center;
-  margin-bottom: 1.5rem;
 }
 
-.category-info-container {
-  margin-top: 3rem;
+.category-info-items-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 
   @include for-phone-only {
-    display: block;
-    text-align: left;
+    flex-flow: column wrap;
   }
 }
 
-.dot {
-  height: pxToRem(20px);
-  width: pxToRem(20px);
-  background-color: #bbb;
-  border-radius: 50%;
+.category-info-item {
+  margin: 0 1rem;
   display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: $border-radius-1;
+
+  @include for-phone-only {
+    margin: 0.5rem 0;
+  }
 }
 
-.usc-dot {
-  background-color: $usc-purple;
+.category-info-text {
+  font-weight: 700;
+  margin: 0;
+
+  @include for-phone-only {
+    text-align: center;
+  }
 }
 
-.statistics-dot {
-  background-color: $statistics-green;
+.usc-category {
+  background-color: $light-purple;
 }
 
-.culture-dot {
-  background-color: $culture-orange;
+.statistics-category {
+  background-color: $light-green;
 }
 
-.category-info-subheading {
-  display: inline-block;
-  margin-left: 0.5rem;
+.culture-category {
+  background-color: $light-orange;
 }
 
-.timeline {
-  margin: 3rem 0 5rem 0;
+.timeline-container {
+  margin-bottom: 3rem;
   padding: 1rem;
-  border-radius: pxToRem(15px);
-  box-shadow: 0 pxToRem(10px) pxToRem(20px) rgba(0, 0, 0, 0.19), 0 pxToRem(6px) pxToRem(6px) rgba(0, 0, 0, 0.23);
-  background-color: $off-white;
+  border: pxToRem(1px) solid $light-grey;
+  border-radius: $border-radius-2;
+  background-color: $light-grey;
 }
 
 .usc-event {
@@ -73,11 +68,6 @@
 }
 
 .year {
-  font-size: $h2;
-
-  @include for-tablet-landscape-up {
-    font-size: $h1;
-  }
 }
 
 .months-container {
@@ -89,7 +79,6 @@
   border-top: pxToRem(2px) solid #000000;
   padding-top: pxToRem(5px);
   text-transform: uppercase;
-  font-size: $h4;
 }
 
 .event-container {
@@ -119,7 +108,7 @@
 }
 
 .event-category {
-  padding-top: 1rem;
+  padding: 1rem 0.25rem;
   min-height: pxToRem(50px);
   text-align: center;
 }

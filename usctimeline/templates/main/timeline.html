@@ -1,21 +1,21 @@
 {% extends 'components/layout.html' %}
 {% block content %}
     <div class="container">
-        <div class="category-info-container">
-            <div class="category-info-item">
-                <span class="dot usc-dot"></span>
-                <h4 class="category-info-subheading">USC</h4>
+    <div class="category-info-container">
+        <h3 class="category-info-heading">Categories</h3>
+        <div class="category-info-items-container">
+            <div class="category-info-item usc-category">
+                <p class="category-info-text">USC</p>
             </div>
-            <div class="category-info-item">
-                <span class="dot statistics-dot"></span>
-                <h4 class="category-info-subheading">Statistics</h4>
+            <div class="category-info-item statistics-category">
+                <p class="category-info-text">Statistics</p>
             </div>
-            <div class="category-info-item">
-                <span class="dot culture-dot"></span>
-                <h4 class="category-info-subheading">Culture</h4>
+            <div class="category-info-item culture-category">
+                <p class="category-info-text">Culture</p>
             </div>
         </div>
-        <div class="timeline">
+    </div>
+        <div class="timeline-container">
             {% for year, events_per_month in events_per_year.items() %}
                 <div class="year-container">
                     <h1 id="{{ year }}" class="year">{{ year }}</h1>
@@ -23,7 +23,7 @@
                 <div class="months-container">
                     {% for month, events in events_per_month.items() %}
                         <div class="month-container">
-                            <h2 class="month">{{ month_name[month][0:3] }}</h2>
+                            <p class="month">{{ month_name[month][0:3] }}</p>
                         </div>
                         <div class="event-container">
                             {% if events %}

@@ -18,13 +18,18 @@ $h5: 1rem;
 $h6: 1rem;
 
 $line-height: 140%;
-$border-radius: 4px;
+$border-radius-1: 4px;
+$border-radius-2: 10px;
+
+$box-shadow-1: 0 10px 20px rgba(#000, .19), 0 6px 6px rgba(#000, .23);
+$box-shadow-2: 0 3px 6px rgba(#000, .16), 0 3px 6px rgba(#000, .23) ;
+
 
 $black: #000000;
 $white: #FFFFFF;
 $off-white: #FAFAFA;
 
-$light-grey: #E5E5E5;
+$light-grey: #EDEDED;
 $dark-grey: #495057;
 
 $usc-purple: #C7B0E8;
@@ -40,3 +45,5 @@ $dark-green: #2E9E5D;
 $dark-orange: #9E5D2E;
 
 $kobe: #78290F;
+
+$background-color: $white;
