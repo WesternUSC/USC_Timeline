@@ -57,6 +57,11 @@ def update_event_form_factory(default_category_name, event_id):
 
 class SearchEventForm(FlaskForm):
     title = StringField('Title')
+    exact_date = DateField(
+        'On This Exact Day:',
+        validators=[Optional()],
+        format='%Y-%m-%d'
+    )
     from_date = DateField(
         'From',
         validators=[Optional()],
@@ -68,14 +73,14 @@ class SearchEventForm(FlaskForm):
         format='%Y-%m-%d'
     )
     category = QuerySelectField(
-        'Category',
+        'Category:',
         query_factory=category_query,
         get_label='name',
         allow_blank=True,
-        blank_text='Choose Category'
+        blank_text='None'
     )
     tags = QuerySelectMultipleField(
-        'Tag(s)',
+        'Tag(s):',
         query_factory=tag_query,
         get_label='name'
     )

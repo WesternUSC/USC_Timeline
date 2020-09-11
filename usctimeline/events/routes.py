@@ -138,6 +138,7 @@ def search_event():
     events = []
     if form.validate_on_submit():
         title = form.title.data
+        exact_date = form.exact_date.data
         from_date = form.from_date.data
         to_date = form.to_date.data
         category = form.category.data
@@ -152,11 +153,15 @@ def search_event():
             for event in result:
                 title_ids.add(event.id)
             event_ids = event_ids.intersection(title_ids)
+        if exact_date:
+            date_ids = set()
+            result = Event.query.filter(Event.date == exact_date)
+            for event in result:
+                date_ids.add(event.id)
+            event_ids = event_ids.intersection(date_ids)
         if from_date and to_date:
             date_ids = set()
-            result = Event.query.filter(
-                and_(from_date <= Event.date, Event.date <= to_date)
-            ).all()
+            result = Event.query.filter(and_(from_date <= Event.date, Event.date <= to_date)).all()
             for event in result:
                 date_ids.add(event.id)
             event_ids = event_ids.intersection(date_ids)
@@ -176,6 +181,8 @@ def search_event():
         for id in event_ids:
             event = Event.query.get(id)
             events.append(event)
+        if len(events) == 0:
+            flash('No events found.', 'error')
     return render_template(
         'events/search_event.html',
         title='Search Event',

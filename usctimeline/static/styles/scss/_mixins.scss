@@ -88,6 +88,7 @@
   text-decoration: none;
   color: $color;
   font-weight: 700;
+  cursor: pointer;
 }
 
 @mixin btn-sm {
@@ -117,6 +118,21 @@
   }
 }
 
+@mixin btn-primary-2 {
+  @include btn-base(
+  $border-color: $black,
+  $background-color: $black,
+  $color: $white
+  );
+
+  &:hover {
+    background-color: $white;
+    color: $black;
+    border-color: $black;
+    transition: 0.3s;
+  }
+}
+
 @mixin btn-secondary {
   @include btn-base(
           $border-color: $black,
@@ -142,6 +158,21 @@
   @include btn-lg;
 }
 
+@mixin btn-primary-2-sm {
+  @include btn-primary-2;
+  @include btn-sm;
+}
+
+@mixin btn-primary-2-med {
+  @include btn-primary-2;
+  @include btn-med;
+}
+
+@mixin btn-primary-2-lg {
+  @include btn-primary-2;
+  @include btn-lg;
+}
+
 @mixin btn-secondary-sm {
   @include btn-secondary;
   @include btn-sm;
@@ -155,4 +186,8 @@
 @mixin btn-secondary-lg {
   @include btn-secondary;
   @include btn-lg;
+}
+
+@mixin text-input {
+  border: 1px solid $dark-grey;
 }
