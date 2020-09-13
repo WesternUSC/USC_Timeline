@@ -221,6 +221,23 @@ input {
 .social-icon-img {
   width: 100%; }
 
+.alert {
+  margin: auto;
+  padding: 1rem 0;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  text-align: center; }
+
+.alert-error {
+  background-color: #FFAFAF; }
+
+.alert-message {
+  background-color: #CBB5E9; }
+
+.alert-success {
+  background-color: #BBE4C1; }
+
 .category-info-container {
   padding: 3rem 0; }
 

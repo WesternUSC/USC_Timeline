@@ -1,0 +1,20 @@
+.alert {
+  margin: auto;
+  padding: 1rem 0;
+  font-size: $base;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+}
+
+.alert-error {
+  background-color: $alert-error;
+}
+
+.alert-message {
+  background-color: $alert-message;
+}
+
+.alert-success {
+  background-color: $alert-success;
+}
