@@ -68,7 +68,17 @@ def manage_events():
 @events.route("/event/<int:id>")
 def event(id):
     current_event = Event.query.get_or_404(id)
-    return render_template('events/event.html', title='single_event.title', event=current_event)
+    year = current_event.date.strftime("%Y")
+    referrer = request.referrer
+    if 'search' not in referrer:
+        referrer = referrer + f'#{year}'
+    print(request.referrer)
+    return render_template(
+        'events/event.html',
+        title='single_event.title',
+        event=current_event,
+        referrer=referrer
+    )
 
 
 @events.route("/event/<int:id>/update", methods=['GET', 'POST'])

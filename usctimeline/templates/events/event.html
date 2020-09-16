@@ -1,31 +1,57 @@
 {% extends 'components/layout.html' %}
 {% block content %}
-    <div class="single-event-page-container">
-        {% if current_user.is_authenticated %}
-            <div class="edit-event-buttons">
-                <button>
-                    <a href="{{ url_for('events.update_event', id=event.id) }}">Update</a>
-                </button>
-                <button>
-                    <a href="{{ url_for('events.delete_event_confirmation', id=event.id) }}">Delete</a>
-                </button>
+    <div class="container">
+        <div class="event-button-container">
+            <a class="event-back-button" href="{{ referrer }}">Back</a>
+        </div>
+        <div class="event-category-container">
+            {% if event.category.id == 1 %}
+                <span class="single-event-category usc-category">{{ event.category.name }}</span>
+            {% elif event.category.id == 2 %}
+                <span class="single-event-category statistics-category">{{ event.category.name }}</span>
+            {% elif event.category.id == 3 %}
+                <span class="single-event-category culture-category">{{ event.category.name }}</span>
+            {% endif %}
+        </div>
+        <div class="single-event-header-information">
+            <h1>{{ event.title }}</h1>
+            <h3>{{ event.date }}</h3>
+        </div>
+        {% if event.images %}
+            <div class="single-event-images-container">
+                {% for image in event.images %}
+                    <div class="single-event-image">
+                        <img src="{{ url_for('static', filename='images/event/' + image.filename) }}" alt="Event image">
+                    </div>
+                {% endfor %}
             </div>
         {% endif %}
-        <div class="category-label">
-            <span class="category-label-text">USC</span>
+        <div class="single-event-description-container">
+            <h3>Description:</h3>
+            <p>{{ event.description }}</p>
+            {% if event.external_url %}
+                <a href="{{ event.external_url }}" target="_blank" rel="noopener noreferrer">Learn more</a>
+            {% endif %}
         </div>
-        <h1 class="event-title-text">{{ event.title }}</h1>
-        <div class="event-images">
-            {% for image in event.images %}
-                <div class="event-image">
-                    <img src="{{ url_for('static', filename='images/event/' + image.filename) }}" alt="event image"
-                         class="image">
-                </div>
-            {% endfor %}
+        <div class="single-event-tags-container">
+            {% if event.tags %}
+                <p class="single-event-tag-header"><b>Tag(s):</b></p>
+                {% for tag in event.tags %}
+                    {% if tag == event.tags[-1] %}
+                        <span>{{ tag.name }}</span>
+                    {% else %}
+                        <span>{{ tag.name }},</span>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </div>
-        <div class="event-description-container">
-            <h2>Description:</h2>
-            <p class="event-description-text">{{ event.description }}</p>
-        </div>
+        {% if current_user.is_authenticated %}
+            <div class="single-event-authentication-buttons-container">
+                <a class="single-event-authentication-button"
+                   href="{{ url_for('events.update_event', id=event.id) }}">Update</a>
+                <a class="single-event-authentication-button"
+                   href="{{ url_for('events.delete_event_confirmation', id=event.id) }}">Delete</a>
+            </div>
+        {% endif %}
     </div>
 {% endblock content %}
