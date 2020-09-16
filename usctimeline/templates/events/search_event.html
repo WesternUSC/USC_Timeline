@@ -9,13 +9,16 @@
                     <div class="search-result">
                         {% if event.category.id == 1 %}
                             <div class="search-results-category-container usc-category">
-                                <span>{{ event.category.name }}</span></div>
+                                <span>{{ event.category.name }}</span>
+                            </div>
                         {% elif event.category.id == 2 %}
                             <div class="search-results-category-container statistics-category">
-                                <span>{{ event.category.name }}</span></div>
+                                <span>{{ event.category.name }}</span>
+                            </div>
                         {% elif event.category.id == 3 %}
                             <div class="search-results-category-container culture-category">
-                                <span>{{ event.category.name }}</span></div>
+                                <span>{{ event.category.name }}</span>
+                            </div>
                         {% endif %}
                         <h4>{{ month_name[event.date.month] }} {{ event.date.day }}, {{ event.date.year }}</h4>
                         <h4>
