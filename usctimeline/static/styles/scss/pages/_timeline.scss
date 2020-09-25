@@ -40,7 +40,7 @@
   padding: 1rem;
   border: pxToRem(1px) solid $light-grey;
   border-radius: $border-radius-2;
-  background-color: $light-grey;
+  background-color: $white;
 }
 
 .usc-event {
@@ -80,7 +80,7 @@
 .event-date {
   padding-top: 1rem;
   min-width: 3rem;
-  font-family: "Roboto", sans-serif;
+  font-family: $main-font;
   font-size: $h5;
   font-weight: 700;
 }
