@@ -84,7 +84,7 @@
   background-color: $background-color;
   border: pxToRem(2px) solid $border-color;
   border-radius: $border-radius-1;
-  font-family: "Roboto", sans-serif;
+  font-family: $main-font;
   text-decoration: none;
   color: $color;
   font-weight: 700;

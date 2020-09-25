@@ -9,13 +9,13 @@ input {
 }
 
 h1, h2, h3, h4, h5, h6, p {
-  font-family: "Roboto", sans-serif;
+  font-family: $main-font;
   line-height: $line-height;
   margin-bottom: 1.25rem;
 }
 
 a {
-  font-family: "Roboto", sans-serif;
+  font-family: $main-font;
 }
 
 h1 {
@@ -79,7 +79,7 @@ p {
 }
 
 input {
-  font-family: "Roboto", sans-serif;
+  font-family: $main-font;
   font-size: $base;
 }
 
