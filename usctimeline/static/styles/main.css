@@ -1,18 +1,18 @@
 @font-face {
   font-family: "Roboto";
-  src: url("../../fonts/roboto/regular/Roboto-Regular.woff2") format("woff2"), url("../../fonts/roboto/regular/Roboto-Regular.woff") format("woff");
+  src: url("../fonts/roboto/regular/Roboto-Regular.woff2") format("woff2"), url("../fonts/roboto/regular/Roboto-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal; }
 
 @font-face {
   font-family: "Roboto";
-  src: url("../../fonts/roboto/italic/Roboto-Italic.woff2") format("woff2"), url("../../fonts/roboto/italic/Roboto-Italic.woff") format("woff");
+  src: url("../fonts/roboto/italic/Roboto-Italic.woff2") format("woff2"), url("../fonts/roboto/italic/Roboto-Italic.woff") format("woff");
   font-weight: 400;
   font-style: italic; }
 
 @font-face {
   font-family: "Roboto";
-  src: url("../../fonts/roboto/bold/Roboto-Bold.woff2") format("woff2"), url("../../fonts/roboto/bold/Roboto-Bold.woff") format("woff");
+  src: url("../fonts/roboto/bold/Roboto-Bold.woff2") format("woff2"), url("../fonts/roboto/bold/Roboto-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal; }
 
@@ -37,7 +37,7 @@ ol, ul {
   box-sizing: inherit; }
 
 body {
-  background-color: #FFFFFF; }
+  background-color: #FAFAFA; }
 
 input {
   -webkit-appearance: none;
@@ -157,7 +157,7 @@ input {
 .header-nav-link {
   margin-left: 1rem;
   display: inline-block;
-  background-color: #FFFFFF;
+  background-color: #FAFAFA;
   border: 0.125rem solid #000000;
   border-radius: 4px;
   font-family: "Roboto", sans-serif;
@@ -272,7 +272,7 @@ input {
   padding: 1rem;
   border: 0.0625rem solid #EDEDED;
   border-radius: 10px;
-  background-color: #EDEDED; }
+  background-color: #FFFFFF; }
 
 .usc-event {
   background-color: #C7B0E8; }
@@ -339,53 +339,90 @@ input {
   .hidden {
     display: block; } }
 
-.single-event-page-container {
-  margin: auto;
-  width: 95%; }
-  @media (min-width: 1200px) {
-    .single-event-page-container {
-      width: 68.75rem; } }
-  @media (min-width: 1920px) {
-    .single-event-page-container {
-      width: 107.5rem; } }
+.event-button-container {
+  padding: 2rem 0; }
 
-.edit-event-buttons {
+.event-back-button {
+  display: inline-block;
+  background-color: #FAFAFA;
+  border: 0.125rem solid #000000;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.75rem; }
+  .event-back-button:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+    border-color: #000000;
+    transition: 0.3s; }
+
+.event-category-container {
+  padding: 0.5rem 0;
   text-align: center; }
 
-.category-label {
-  margin: 1rem 0;
-  text-align: center; }
+.single-event-category {
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif; }
 
-.category-label-text {
-  border: 1px solid black;
-  padding: 0.625rem; }
+.single-event-header-information {
+  text-align: center;
+  padding: 0.5rem 0; }
 
-.event-title-text {
-  text-align: center; }
+.single-event-images-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap; }
 
-.event-images {
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center; }
+.single-event-image {
+  margin: 1rem; }
+  .single-event-image img {
+    width: 100%; }
+  @media (max-width: 599px) {
+    .single-event-image {
+      width: 9.375rem; } }
+  @media (min-width: 600px) {
+    .single-event-image {
+      width: 12.5rem; } }
   @media (min-width: 900px) {
-    .event-images {
-      grid-template-columns: repeat(3, 1fr); } }
+    .single-event-image {
+      width: 15.625rem; } }
 
-.event-image {
-  height: 12.5rem; }
+.single-event-description-container {
+  padding: 1rem 0; }
 
-.image {
-  height: 100%; }
+.single-event-tags-container {
+  padding-bottom: 1rem; }
 
-.event-description-container {
-  margin: auto;
-  width: 80%; }
-  @media (min-width: 900px) {
-    .event-description-container {
-      width: 60%; } }
+.single-event-tag-header {
+  display: inline-block; }
 
-.event-description-text {
+.single-event-authentication-buttons-container {
+  padding: 2rem 0;
   text-align: center; }
+
+.single-event-authentication-button {
+  margin: 0 0.5rem;
+  display: inline-block;
+  background-color: #FAFAFA;
+  border: 0.125rem solid #000000;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.75rem; }
+  .single-event-authentication-button:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+    border-color: #000000;
+    transition: 0.3s; }
 
 .search-container {
   padding: 1rem 0; }
@@ -527,7 +564,7 @@ input {
 
 .search-clear-btn {
   display: inline-block;
-  background-color: #FFFFFF;
+  background-color: #FAFAFA;
   border: 0.125rem solid #000000;
   border-radius: 4px;
   font-family: "Roboto", sans-serif;
@@ -566,3 +603,64 @@ input {
 
 .search-results-tag-header {
   display: inline-block; }
+
+.login-page {
+  display: flex;
+  justify-content: center; }
+
+@media (max-width: 599px) {
+  .club-login-container {
+    width: 100%; } }
+
+@media (min-width: 600px) {
+  .club-login-container {
+    border: 1px solid #EDEDED;
+    border-radius: 4px;
+    padding: 2rem 3rem; } }
+
+.login-input-container {
+  padding: 0.5rem 0; }
+
+.login-form-legend {
+  text-align: center; }
+
+.login-label {
+  display: block;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  padding-bottom: 0.5rem; }
+
+.login-input {
+  border: 0.0625rem solid #495057;
+  background-color: #FAFAFA;
+  border-radius: 4px;
+  padding: 0.75rem;
+  font-size: 16px; }
+  @media (max-width: 599px) {
+    .login-input {
+      width: 100%; } }
+  @media (min-width: 600px) {
+    .login-input {
+      width: 25rem; } }
+
+.login-btn-container {
+  padding: 1rem 0; }
+
+.login-btn {
+  display: inline-block;
+  background-color: #4F2784;
+  border: 0.125rem solid #4F2784;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.5rem;
+  width: 100%; }
+  .login-btn:hover {
+    background-color: #FAFAFA;
+    color: #4F2784;
+    border-color: #4F2784;
+    transition: 0.3s; }

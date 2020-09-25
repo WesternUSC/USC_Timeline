@@ -1,0 +1,50 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+}
+
+.club-login-container {
+  @include for-phone-only {
+    width: 100%;
+  }
+
+  @include for-tablet-portrait-up {
+    border: 1px solid $light-grey;
+    border-radius: $border-radius-1;
+    padding: 2rem 3rem;
+  }
+}
+
+.login-input-container {
+  padding: 0.5rem 0;
+}
+
+.login-form-legend {
+  text-align: center;
+}
+
+.login-label {
+  display: block;
+  @include form-label;
+}
+
+.login-input {
+  @include form-input;
+
+  @include for-phone-only {
+    width: 100%;
+  }
+
+  @include for-tablet-portrait-up {
+    width: 25rem;
+  }
+}
+
+.login-btn-container {
+  padding: 1rem 0;
+}
+
+.login-btn {
+  @include btn-primary-sm;
+  width: 100%;
+}

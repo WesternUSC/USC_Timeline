@@ -188,6 +188,18 @@
   @include btn-lg;
 }
 
-@mixin text-input {
-  border: 1px solid $dark-grey;
+@mixin form-label {
+  font-size: $base;
+  font-family: $main-font;
+  font-weight: 700;
+  padding-bottom: 0.5rem;
 }
+
+@mixin form-input {
+  border: pxToRem(1px) solid $dark-grey;
+  background-color: $background-color;
+  border-radius: $border-radius-1;
+  padding: 0.75rem;
+  font-size: $base;
+}
+
