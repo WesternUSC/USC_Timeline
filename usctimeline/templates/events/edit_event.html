@@ -1,91 +1,92 @@
 {% extends 'components/layout.html' %}
 {% block content %}
-    <div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <div class="container">
         <form action="" method="POST" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <fieldset>
-                <legend>{{ legend }}</legend>
-                <div>
-                    {{ form.title.label(class="css-class-name") }}
+                <legend class="update-event-legend">{{ legend }}</legend>
+                <div class="update-event-input-container">
+                    {{ form.title.label(class="update-event-label") }}
                     {% if form.title.errors %}
-                        {{ form.title(class="alert-error css-class-name-2") }}
+                        {{ form.title(class="update-event-input update-event-title-input") }}
                         <div>
                             {% for error in form.title.errors %}
                                 <span class="alert-error">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.title(class="css-class-name-1 css-class-name-2") }}
+                        {{ form.title(class="update-event-input update-event-title-input") }}
                     {% endif %}
                 </div>
-                <div>
-                    {{ form.date.label(class="css-class-name") }}
+                <div class="update-event-input-container">
+                    {{ form.date.label(class="update-event-label update-event-date-label") }}
                     {% if form.date.errors %}
-                        {{ form.date(class="alert-error css-class-name-2") }}
+                        {{ form.date(class="update-event-input") }}
                         <div>
                             {% for error in form.date.errors %}
                                 <span class="alert-error">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.date(class="css-class-name-1 css-class-name-2") }}
+                        {{ form.date(class="update-event-input") }}
                     {% endif %}
                 </div>
-                <div>
-                    {{ form.description.label(class="css-class-name") }}
+                <div class="update-event-input-container">
+                    {{ form.description.label(class="update-event-label update-event-description-label") }}
                     {% if form.description.errors %}
-                        {{ form.description(class="alert-error css-class-name-2") }}
+                        {{ form.description(class="update-event-input update-event-description-input") }}
                         <div>
                             {% for error in form.description.errors %}
                                 <span class="alert-error">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.description(class="css-class-name-1 css-class-name-2") }}
+                        {{ form.description(class="update-event-input update-event-description-input") }}
                     {% endif %}
                 </div>
-                <div>
-                    {{ form.external_url.label(class="css-class-name") }}
+                <div class="update-event-input-container">
+                    {{ form.external_url.label(class="update-event-label update-event-external-url-label") }}
                     {% if form.external_url.errors %}
-                        {{ form.external_url(class="alert-error css-class-name-2") }}
+                        {{ form.external_url(class="update-event-input update-event-external-url-input") }}
                         <div>
                             {% for error in form.external_url.errors %}
                                 <span class="alert-error">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.external_url(class="css-class-name-1 css-class-name-2") }}
+                        {{ form.external_url(class="update-event-input update-event-external-url-input") }}
                     {% endif %}
                 </div>
-                <div>
-                    {{ form.category.label(class="css-class-name") }}
+                <div class="update-event-input-container">
+                    {{ form.category.label(class="update-event-label update-event-category-label") }}
                     {% if form.category.errors %}
-                        {{ form.category(class="alert-error css-class-name-2") }}
+                        {{ form.category(class="update-event-input") }}
                         <div>
                             {% for error in form.category.errors %}
                                 <span class="alert-error">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.category(class="css-class-name-1 css-class-name-2") }}
+                        {{ form.category(class="update-event-input") }}
                     {% endif %}
                 </div>
-                <div>
-                    {{ form.tags.label(class="css-class-name") }}
+                <div class="update-event-input-container">
+                    {{ form.tags.label(class="update-event-label") }}
                     {% if form.tags.errors %}
-                        {{ form.tags(class="alert-error css-class-name-2") }}
+                        {{ form.tags(class="update-event-tag-input") }}
                         <div>
                             {% for error in form.tags.errors %}
                                 <span class="alert-error">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.tags(class="css-class-name-1 css-class-name-2") }}
+                        {{ form.tags(class="update-event-tag-input") }}
                     {% endif %}
                 </div>
-                <div>
-                    {{ form.images.label(class="css-class-name") }}
-                    {{ form.images(class="css-class-name") }}
+                <div class="update-event-input-container">
+                    {{ form.images.label(class="update-event-label") }}
+                    {{ form.images(class="") }}
                     {% if form.images.errors %}
                         {% for error in form.images.errors %}
                             <span class="alert-error">{{ error }}</span><br>
@@ -93,12 +94,11 @@
                     {% endif %}
                 </div>
             </fieldset>
-            <div>
-                {{ form.submit(class="css-class-name") }}
+            <div class="update-event-btn-container">
+                {{ form.submit(class="update-event-submit-btn") }}
+                <a class="update-event-cancel-btn" href="{{ cancel_dest }}">Cancel</a>
             </div>
-            <button>
-                <a href="{{ cancel_dest }}">Cancel</a>
-            </button>
         </form>
     </div>
+    <script src="{{ url_for('static', filename='js/events/utils.js') }}"></script>
 {% endblock content %}

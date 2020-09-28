@@ -1,0 +1,73 @@
+.update-event-legend {
+  padding: 1rem 0;
+  font-family: $main-font;
+
+  @include for-phone-only {
+    font-size: $h2-small;
+  }
+
+  @include for-tablet-portrait-up {
+    font-size: $h2-small;
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: $h2-large;
+  }
+}
+
+.update-event-input-container {
+  padding: 1rem 0;
+}
+
+.update-event-label {
+  display: block;
+  @include form-label;
+}
+
+.update-event-input {
+  @include form-input;
+
+  @include for-phone-up {
+    width: 100%;
+  }
+  @include for-tablet-landscape-up {
+    width: 50%;
+  }
+}
+
+.update-event-tag-input {
+  border: pxToRem(1px) solid $light-grey;
+  border-bottom: none;
+  border-radius: $border-radius-1;
+  font-family: $main-font;
+  font-size: $base;
+
+  @include for-phone-up {
+    width: 100%;
+  }
+
+  @include for-tablet-landscape-up {
+    width: 25%;
+  }
+
+  & > option {
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    border-bottom: pxToRem(1px) solid $light-grey;
+  }
+}
+
+.update-event-btn-container {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.update-event-submit-btn {
+  margin: 0 0.5rem;
+  @include btn-primary-lg;
+}
+
+.update-event-cancel-btn {
+  margin: 0 0.5rem;
+  @include btn-secondary-lg;
+}

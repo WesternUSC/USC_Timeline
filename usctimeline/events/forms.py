@@ -51,6 +51,7 @@ def update_event_form_factory(default_category_name, event_id):
             get_label='name',
             default=Tag.query.filter(Tag.events.any(id=event_id)).all()
         )
+        submit = SubmitField('Update')
 
     return UpdateEventForm
 
