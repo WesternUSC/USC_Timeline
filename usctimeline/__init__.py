@@ -24,13 +24,11 @@ def create_app(config_class=Config):
 
     from usctimeline.users.routes import users
     from usctimeline.events.routes import events
-    from usctimeline.categories.routes import categories
     from usctimeline.tags.routes import tags
     from usctimeline.main.routes import main
     from usctimeline.errors.handlers import errors
     app.register_blueprint(users)
     app.register_blueprint(events)
-    app.register_blueprint(categories)
     app.register_blueprint(tags)
     app.register_blueprint(main)
     app.register_blueprint(errors)

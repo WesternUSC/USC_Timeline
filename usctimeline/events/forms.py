@@ -4,9 +4,10 @@ from wtforms.fields.html5 import DateField, URLField
 from wtforms.validators import DataRequired, Optional
 from wtforms.ext.sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
 from usctimeline.models import Category, Tag
-from usctimeline.categories.forms import category_query
 from usctimeline.tags.forms import tag_query
 
+def category_query():
+    return Category.query
 
 class EventForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
