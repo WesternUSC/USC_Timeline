@@ -153,6 +153,11 @@
   @include btn-sm;
 }
 
+@mixin btn-primary-med {
+  @include btn-primary;
+  @include btn-med;
+}
+
 @mixin btn-primary-lg {
   @include btn-primary;
   @include btn-lg;
