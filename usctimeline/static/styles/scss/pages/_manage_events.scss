@@ -1,0 +1,33 @@
+.manage-events-table {
+  width: 100%;
+  font-family: $main-font;
+}
+
+.manage-events-table-header {
+  text-align: left;
+}
+
+.manage-events-new-event-btn-container {
+  padding: 1rem;
+  text-align: center;
+}
+
+.manage-events-new-event-btn {
+  @include btn-secondary-med;
+}
+
+.manage-events-table-caption {
+  padding: 2rem 0;
+
+  @include for-phone-only {
+    font-size: $h3-small;
+  }
+
+  @include for-tablet-portrait-up {
+    font-size: $h3-small;
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: $h3-large;
+  }
+}

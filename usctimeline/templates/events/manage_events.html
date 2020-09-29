@@ -1,17 +1,16 @@
 {% extends 'components/layout.html' %}
 {% block content %}
-    <button>
-        <a href="{{ url_for('events.new_event') }}">Create Event</a>
-    </button>
-    <table>
-        <caption>Manage All Events</caption>
-        <thead>
+    <div class="manage-events-new-event-btn-container">
+        <a class="manage-events-new-event-btn" href="{{ url_for('events.new_event') }}">Create Event</a>
+    </div>
+    <table class="manage-events-table">
+        <caption class="manage-events-table-caption">Manage All Events</caption>
+        <thead class="manage-events-table-header">
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Title</th>
             <th scope="col">Category</th>
             <th scope="col">Tag(s)</th>
-            <th scope="col">Author</th>
             <th scope="col" colspan="2">Action</th>
         </tr>
         </thead>
