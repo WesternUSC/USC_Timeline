@@ -1,0 +1,51 @@
+.new-account-legend {
+  padding: 2rem 0;
+  font-family: $main-font;
+
+  @include for-phone-only {
+    font-size: $h3-small;
+  }
+
+  @include for-tablet-portrait-up {
+    font-size: $h3-small;
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: $h3-large;
+  }
+}
+
+.new-account-input-container {
+  padding: 1rem 0;
+}
+
+.new-account-label {
+  display: block;
+  @include form-label;
+}
+
+.new-account-input {
+  @include form-input;
+
+  @include for-phone-only {
+    width: 100%;
+  }
+
+  @include for-tablet-portrait-up {
+    width: 100%;
+  }
+
+  @include for-tablet-landscape-up {
+    width: 50%;
+  }
+}
+
+.register-btn-container {
+  padding: 1rem;
+  text-align: center;
+}
+
+.register-btn {
+  margin: 0.5rem;
+  @include btn-secondary-med;
+}

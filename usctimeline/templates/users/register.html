@@ -4,66 +4,64 @@
         <form action="" method="POST">
             {{ form.hidden_tag() }}
             <fieldset>
-                <legend>Join Today</legend>
-                <div>
-                    {{ form.username.label(class="css-class-name") }}
+                <legend class="new-account-legend">Create New Account</legend>
+                <div class="new-account-input-container">
+                    {{ form.username.label(class="new-account-label") }}
                     {% if form.username.errors %}
-                        {{ form.username(class="alert-error css-class-name-2") }}
+                        {{ form.username(class="new-account-input") }}
                         <div>
                             {% for error in form.username.errors %}
                                 <span class="alert-error">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.username(class="css-class-name-1 css-class-name-2") }}
+                        {{ form.username(class="new-account-input") }}
                     {% endif %}
                 </div>
-                <div>
-                    {{ form.email.label(class="css-class-name") }}
+                <div class="new-account-input-container">
+                    {{ form.email.label(class="new-account-label") }}
                     {% if form.email.errors %}
-                        {{ form.email(class="alert-error css-class-name-2") }}
+                        {{ form.email(class="new-account-input") }}
                         <div>
                             {% for error in form.email.errors %}
                                 <span class="alert-error">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.email(class="css-class-name-1 css-class-name-2") }}
+                        {{ form.email(class="new-account-input") }}
                     {% endif %}
                 </div>
-                <div>
-                    {{ form.password.label(class="css-class-name") }}
+                <div class="new-account-input-container">
+                    {{ form.password.label(class="new-account-label") }}
                     {% if form.password.errors %}
-                        {{ form.password(class="alert-error css-class-name-2") }}
+                        {{ form.password(class="new-account-input") }}
                         <div>
                             {% for error in form.password.errors %}
                                 <span class="alert-error">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.password(class="css-class-name-1 css-class-name-2") }}
+                        {{ form.password(class="new-account-input") }}
                     {% endif %}
                 </div>
-                <div>
-                    {{ form.confirm_password.label(class="css-class-name") }}
+                <div class="new-account-input-container">
+                    {{ form.confirm_password.label(class="new-account-label") }}
                     {% if form.confirm_password.errors %}
-                        {{ form.confirm_password(class="alert-error css-class-name-2") }}
+                        {{ form.confirm_password(class="new-account-input") }}
                         <div>
                             {% for error in form.confirm_password.errors %}
                                 <span class="alert-error">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.confirm_password(class="css-class-name-1 css-class-name-2") }}
+                        {{ form.confirm_password(class="new-account-input") }}
                     {% endif %}
                 </div>
             </fieldset>
-            <div>
-                {{ form.submit(class="css-class-name") }}
+            <div class="register-btn-container">
+                {{ form.submit(class="register-btn") }}
+                <a class="register-btn" href="{{ url_for('users.account') }}">Cancel</a>
             </div>
-            <button>
-                <a href="{{ url_for('main.index') }}">Cancel</a>
-            </button>
         </form>
     </div>
 {% endblock content %}

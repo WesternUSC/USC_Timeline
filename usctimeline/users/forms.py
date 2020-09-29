@@ -32,7 +32,7 @@ class RegistrationForm(FlaskForm):
             EqualTo('password')
         ]
     )
-    submit = SubmitField('Create New Account')
+    submit = SubmitField('Create')
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
