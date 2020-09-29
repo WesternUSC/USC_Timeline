@@ -882,3 +882,43 @@ input {
   @media (min-width: 900px) {
     .manage-events-table-caption {
       font-size: 2rem; } }
+
+.manage-tags-new-tag-btn-container {
+  padding: 1rem 0;
+  text-align: center; }
+
+.manage-tags-new-tag-btn {
+  display: inline-block;
+  background-color: #FAFAFA;
+  border: 0.125rem solid #000000;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.75rem; }
+  .manage-tags-new-tag-btn:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+    border-color: #000000;
+    transition: 0.3s; }
+
+.manage-tags-table {
+  width: 100%;
+  font-family: "Roboto", sans-serif; }
+
+.manage-tags-table-caption {
+  padding: 2rem 0; }
+  @media (max-width: 599px) {
+    .manage-tags-table-caption {
+      font-size: 1.5rem; } }
+  @media (min-width: 600px) {
+    .manage-tags-table-caption {
+      font-size: 1.5rem; } }
+  @media (min-width: 900px) {
+    .manage-tags-table-caption {
+      font-size: 2rem; } }
+
+.manage-tags-table-header {
+  text-align: left; }

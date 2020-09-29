@@ -1,0 +1,32 @@
+.manage-tags-new-tag-btn-container {
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.manage-tags-new-tag-btn {
+  @include btn-secondary-med;
+}
+
+.manage-tags-table {
+  width: 100%;
+  font-family: $main-font;
+}
+
+.manage-tags-table-caption {
+  padding: 2rem 0;
+  @include for-phone-only {
+    font-size: $h3-small;
+  }
+
+  @include for-tablet-portrait-up {
+    font-size: $h3-small;
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: $h3-large;
+  }
+}
+
+.manage-tags-table-header {
+  text-align: left;
+}

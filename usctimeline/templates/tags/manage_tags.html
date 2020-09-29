@@ -1,11 +1,11 @@
 {% extends 'components/layout.html' %}
 {% block content %}
-    <button>
-        <a href="{{ url_for('tags.new_tag') }}">Create Tag</a>
-    </button>
-    <table>
-        <caption>Manage Tags</caption>
-        <thead>
+    <div class="manage-tags-new-tag-btn-container">
+        <a class="manage-tags-new-tag-btn" href="{{ url_for('tags.new_tag') }}">Create Tag</a>
+    </div>
+    <table class="manage-tags-table">
+        <caption class="manage-tags-table-caption">Manage Tags</caption>
+        <thead class="manage-tags-table-header">
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
