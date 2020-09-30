@@ -39,7 +39,7 @@ def new_event():
                         cancel_dest=url_for('users.account')
                     )
                 else:
-                    img = save_img_to_file_system(image, 'event')
+                    img = save_img_to_file_system(image)
                     event.images.append(img)
         db.session.add(event)
         db.session.commit()
@@ -107,7 +107,7 @@ def update_event(id):
                         cancel_dest=url_for('events.update_event', id=event.id)
                     )
                 else:
-                    img = save_img_to_file_system(image, 'event')
+                    img = save_img_to_file_system(image)
                     event.images.append(img)
         db.session.commit()
         flash('Event has been updated!', 'success')
