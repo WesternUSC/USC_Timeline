@@ -1,13 +1,16 @@
 import os
+import json
 
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
-    UPLOAD_EXTENSIONS = ['.png', 'jpg', '.jpeg', '.svg', '.PNG', '.JPG', 'JPEG', '.SVG']
+    with open('etc/config.json') as file:
+        config = json.load(file)
+    SECRET_KEY = config.get('FLASK_SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = config.get('SQLALCHEMY_DATABASE_URI')
+    UPLOAD_EXTENSIONS = [".png", ".PNG",".jpg", ".JPG",".jpeg", ".JPEG",".svg", ".SVG"]
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    MAIL_SERVER = 'smtp.gmail.com'
-    MAIL_PORT = 587
+    MAIL_SERVER = config.get("MAIL_SERVER")
+    MAIL_PORT = config.get("MAIL_PORT")
     MAIL_USE_TLS = True
-    MAIL_USERNAME = os.environ.get('EMAIL_USERNAME')
-    MAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+    MAIL_USERNAME = config.get('EMAIL_USERNAME')
+    MAIL_PASSWORD = config.get('EMAIL_PASSWORD')
