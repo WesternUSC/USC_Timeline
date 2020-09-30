@@ -1,0 +1,19 @@
+.delete-event-confirmation-msg {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.delete-event-confirmation-btn-container {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.delete-event-confirmation-btn {
+  margin: 0 0.5rem;
+  @include btn-secondary-med;
+}
+
+.delete-event-confirmation-cancel-btn {
+  margin: 0 0.5rem;
+  @include btn-primary-med;
+}

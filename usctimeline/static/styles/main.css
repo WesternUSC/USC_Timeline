@@ -984,3 +984,91 @@ input {
     color: #FFFFFF;
     border-color: #000000;
     transition: 0.3s; }
+
+.delete-event-confirmation-msg {
+  padding: 2rem 0;
+  text-align: center; }
+
+.delete-event-confirmation-btn-container {
+  padding: 2rem 0;
+  text-align: center; }
+
+.delete-event-confirmation-btn {
+  margin: 0 0.5rem;
+  display: inline-block;
+  background-color: #FAFAFA;
+  border: 0.125rem solid #000000;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.75rem; }
+  .delete-event-confirmation-btn:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+    border-color: #000000;
+    transition: 0.3s; }
+
+.delete-event-confirmation-cancel-btn {
+  margin: 0 0.5rem;
+  display: inline-block;
+  background-color: #4F2784;
+  border: 0.125rem solid #4F2784;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.75rem; }
+  .delete-event-confirmation-cancel-btn:hover {
+    background-color: #FAFAFA;
+    color: #4F2784;
+    border-color: #4F2784;
+    transition: 0.3s; }
+
+.delete-tag-confirmation-msg {
+  padding: 2rem 0;
+  text-align: center; }
+
+.delete-tag-confirmation-btn-container {
+  padding: 2rem 0;
+  text-align: center; }
+
+.delete-tag-confirmation-btn {
+  margin: 0 0.5rem;
+  display: inline-block;
+  background-color: #FAFAFA;
+  border: 0.125rem solid #000000;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.75rem; }
+  .delete-tag-confirmation-btn:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+    border-color: #000000;
+    transition: 0.3s; }
+
+.delete-tag-confirmation-cancel-btn {
+  margin: 0 0.5rem;
+  display: inline-block;
+  background-color: #4F2784;
+  border: 0.125rem solid #4F2784;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.75rem; }
+  .delete-tag-confirmation-cancel-btn:hover {
+    background-color: #FAFAFA;
+    color: #4F2784;
+    border-color: #4F2784;
+    transition: 0.3s; }

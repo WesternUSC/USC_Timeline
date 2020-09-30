@@ -1,0 +1,19 @@
+.delete-tag-confirmation-msg {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.delete-tag-confirmation-btn-container {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.delete-tag-confirmation-btn {
+  margin: 0 0.5rem;
+  @include btn-secondary-med;
+}
+
+.delete-tag-confirmation-cancel-btn {
+  margin: 0 0.5rem;
+  @include btn-primary-med;
+}
