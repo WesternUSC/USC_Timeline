@@ -7,6 +7,9 @@
 ### NPM ###
 node_modules/
 
+### Config file ###
+etc/config.json
+
 ### Source CSS Files ###
 static/styles/css/*.css
 
