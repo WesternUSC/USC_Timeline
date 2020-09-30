@@ -94,6 +94,17 @@
                     {% endif %}
                 </div>
             </fieldset>
+            {% if images %}
+                <div class="edit-event-current-images-container">
+                {% for image in images %}
+                    <div class="edit-event-current-img">
+                        <img src="{{ url_for('static', filename='images/event/' + image.filename) }}" alt="Event image">
+                    </div>
+                {% endfor %}
+                </div>
+            {% else %}
+                <small>Event currently has no images.</small>
+            {% endif %}
             <div class="update-event-btn-container">
                 {{ form.submit(class="update-event-submit-btn") }}
                 <a class="update-event-cancel-btn" href="{{ cancel_dest }}">Cancel</a>

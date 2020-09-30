@@ -121,6 +121,7 @@ def update_event(id):
         'events/edit_event.html',
         title='Update Event',
         form=form,
+        images=event.images,
         legend='Update Event',
         cancel_dest=url_for('events.event', id=event.id),
     )

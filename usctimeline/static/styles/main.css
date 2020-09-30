@@ -720,6 +720,21 @@ input {
     text-align: center;
     border-bottom: 0.0625rem solid #EDEDED; }
 
+.edit-event-current-images-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); }
+  @media (min-width: 350px) {
+    .edit-event-current-images-container {
+      width: 100%; } }
+  @media (min-width: 900px) {
+    .edit-event-current-images-container {
+      width: 50%; } }
+
+.edit-event-current-img {
+  height: 50px; }
+  .edit-event-current-img img {
+    height: 100%; }
+
 .update-event-btn-container {
   padding: 2rem 0;
   text-align: center; }

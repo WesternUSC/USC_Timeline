@@ -57,6 +57,27 @@
   }
 }
 
+.edit-event-current-images-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  @include for-phone-up {
+    width: 100%;
+  }
+
+  @include for-tablet-landscape-up {
+    width: 50%;
+  }
+}
+
+.edit-event-current-img {
+  height: 50px;
+
+  img {
+    height: 100%;
+  }
+}
+
 .update-event-btn-container {
   padding: 2rem 0;
   text-align: center;
