@@ -116,6 +116,7 @@ def update_event(id):
         form.title.data = event.title
         form.date.data = event.date
         form.description.data = event.description
+        form.external_url.data = event.external_url
     return render_template(
         'events/edit_event.html',
         title='Update Event',
