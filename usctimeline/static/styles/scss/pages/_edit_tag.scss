@@ -1,0 +1,43 @@
+.edit-tag-legend {
+  padding: 2rem 0;
+  font-family: $main-font;
+
+  @include for-phone-only {
+    font-size: $h2-small;
+  }
+
+  @include for-tablet-portrait-up {
+    font-size: $h2-small;
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: $h2-large;
+  }
+}
+
+.edit-tag-input-label {
+  display: block;
+  @include form-label;
+}
+
+.edit-tag-input {
+  @include form-input;
+
+  @include for-phone-up {
+    width: 100%;
+  }
+
+  @include for-tablet-portrait-up {
+    width: 25%;
+  }
+}
+
+.edit-tag-submit-btn {
+  margin: 1rem 0.5rem 1rem 0;
+  @include btn-primary-med;
+}
+
+.edit-tag-cancel-btn {
+  margin: 1rem 0;
+  @include btn-secondary-med;
+}

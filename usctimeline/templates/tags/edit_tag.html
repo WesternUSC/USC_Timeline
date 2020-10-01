@@ -4,27 +4,25 @@
         <form action="" method="POST">
             {{ form.hidden_tag() }}
             <fieldset>
-                <legend>{{ legend }}</legend>
+                <legend class="edit-tag-legend">{{ legend }}</legend>
                 <div>
-                    {{ form.name.label(class="css-class-name") }}
+                    {{ form.name.label(class="edit-tag-input-label") }}
                     {% if form.name.errors %}
-                        {{ form.name(class="alert-error css-class-name-2") }}
+                        {{ form.name(class="edit-tag-input") }}
                         <div>
                             {% for error in form.name.errors %}
                                 <span class="alert-error">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.name(class="css-class-name-1 css-class-name-2") }}
+                        {{ form.name(class="edit-tag-input") }}
                     {% endif %}
                 </div>
             </fieldset>
             <div>
-                {{ form.submit(class="css-class-name") }}
+                {{ form.submit(class="edit-tag-submit-btn") }}
+                <a class="edit-tag-cancel-btn" href="{{ url_for('tags.manage_tags') }}">Cancel</a>
             </div>
-            <button>
-                <a href="{{ url_for('tags.manage_tags') }}">Cancel</a>
-            </button>
         </form>
     </div>
 {% endblock content %}
