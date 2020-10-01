@@ -35,6 +35,10 @@
   }
 }
 
+.update-event-description-input {
+  height: 15rem;
+}
+
 .update-event-tag-input {
   border: pxToRem(1px) solid $light-grey;
   border-bottom: none;
