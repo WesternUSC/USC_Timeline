@@ -703,6 +703,9 @@ input {
     .update-event-input {
       width: 50%; } }
 
+.update-event-description-input {
+  height: 15rem; }
+
 .update-event-tag-input {
   border: 0.0625rem solid #EDEDED;
   border-bottom: none;
@@ -1086,4 +1089,74 @@ input {
     background-color: #FAFAFA;
     color: #4F2784;
     border-color: #4F2784;
+    transition: 0.3s; }
+
+.edit-tag-legend {
+  padding: 2rem 0;
+  font-family: "Roboto", sans-serif; }
+  @media (max-width: 599px) {
+    .edit-tag-legend {
+      font-size: 2rem; } }
+  @media (min-width: 600px) {
+    .edit-tag-legend {
+      font-size: 2rem; } }
+  @media (min-width: 900px) {
+    .edit-tag-legend {
+      font-size: 3rem; } }
+
+.edit-tag-input-label {
+  display: block;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  padding-bottom: 0.5rem; }
+
+.edit-tag-input {
+  border: 0.0625rem solid #495057;
+  background-color: #FAFAFA;
+  border-radius: 4px;
+  padding: 0.75rem;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif; }
+  @media (min-width: 350px) {
+    .edit-tag-input {
+      width: 100%; } }
+  @media (min-width: 600px) {
+    .edit-tag-input {
+      width: 25%; } }
+
+.edit-tag-submit-btn {
+  margin: 1rem 0.5rem 1rem 0;
+  display: inline-block;
+  background-color: #4F2784;
+  border: 0.125rem solid #4F2784;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.75rem; }
+  .edit-tag-submit-btn:hover {
+    background-color: #FAFAFA;
+    color: #4F2784;
+    border-color: #4F2784;
+    transition: 0.3s; }
+
+.edit-tag-cancel-btn {
+  margin: 1rem 0;
+  display: inline-block;
+  background-color: #FAFAFA;
+  border: 0.125rem solid #000000;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.75rem; }
+  .edit-tag-cancel-btn:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+    border-color: #000000;
     transition: 0.3s; }
