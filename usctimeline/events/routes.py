@@ -14,6 +14,13 @@ events = Blueprint('events', __name__)
 @events.route("/event/new", methods=['GET', 'POST'])
 @login_required
 def new_event():
+    """Route for creating a new event.
+
+    Returns:
+        A redirect to the account route inside the users module if the form
+        submission is valid.
+        Otherwise, a rendered HTML template for this route.
+    """
     form = EventForm()
     if form.validate_on_submit():
         event = Event(
@@ -59,6 +66,11 @@ def new_event():
 @events.route("/event/manage")
 @login_required
 def manage_events():
+    """Route for managing all existing events.
+
+    Returns:
+        A rendered HTML template for this route.
+    """
     events = Event.query.all()
     return render_template(
         'events/manage_events.html',
@@ -69,12 +81,20 @@ def manage_events():
 
 @events.route("/event/<int:id>")
 def event(id):
+    """Route for displaying a single event.
+
+    Args:
+        id: ID of the event to be displayed.
+
+    Returns:
+        A rendered HTML template for this route if an event with <id> exists.
+        Otherwise, a 404 page.
+    """
     current_event = Event.query.get_or_404(id)
     year = current_event.date.strftime("%Y")
     referrer = request.referrer
     if 'search' not in referrer:
         referrer = referrer + f'#{year}'
-    print(request.referrer)
     return render_template(
         'events/event.html',
         title='single_event.title',
@@ -86,6 +106,16 @@ def event(id):
 @events.route("/event/<int:id>/update", methods=['GET', 'POST'])
 @login_required
 def update_event(id):
+    """Route for updating a specific event's information.
+
+    Args:
+        id: ID of the event to be updated.
+
+    Returns:
+        A redirect to the event route inside the events module if the form
+        submission is valid.
+        Otherwise, a rendered HTML template for this route.
+    """
     event = Event.query.get_or_404(id)
     UpdateEventForm = update_event_form_factory(event.category.name, event.id)
     form = UpdateEventForm()
@@ -134,6 +164,16 @@ def update_event(id):
 @events.route('/event/<int:id>/delete')
 @login_required
 def delete_event(id):
+    """Route for deleting a specific event.
+
+    Args:
+        id: ID of the event to be deleted.
+
+    Returns:
+        A redirect for the manage_events route inside the events module if an
+        event with <id> exists.
+        Otherwise, a 404 page.
+    """
     event = Event.query.get_or_404(id)
     db.session.delete(event)
     db.session.commit()
@@ -144,6 +184,15 @@ def delete_event(id):
 @events.route('/event/<int:id>/delete/confirm')
 @login_required
 def delete_event_confirmation(id):
+    """Route for confirming the deletion of an event.
+
+    Args:
+        id: ID of the event to be deleted.
+
+    Returns:
+        A rendered HTML template for this route if an event with <id> exists.
+        Otherwise, a 404 page.
+    """
     event = Event.query.get_or_404(id)
     return render_template(
         'events/delete_event_confirmation.html',
@@ -154,6 +203,12 @@ def delete_event_confirmation(id):
 
 @events.route("/event/search", methods=['GET', 'POST'])
 def search_event():
+    """Route for searching event(s).
+
+    Returns:
+        A rendered HTML template for this route with all events matching the
+        criteria provided in the SearchEventForm (if any exist).
+    """
     form = SearchEventForm()
     events = []
     if form.validate_on_submit():
