@@ -6,7 +6,7 @@ from sqlalchemy import and_
 from usctimeline import db
 from usctimeline.models import Event, Image, Tag
 from usctimeline.utils import save_img_to_file_system
-from usctimeline.events.forms import EventForm, SearchEventForm, update_event_form_factory
+from usctimeline.events.forms import (EventForm, SearchEventForm, update_event_form_factory)
 
 events = Blueprint('events', __name__)
 
@@ -29,8 +29,10 @@ def new_event():
         if form.images.data[0].filename != '':
             for image in form.images.data:
                 filename, file_ext = os.path.splitext(image.filename)
-                if file_ext not in ['.png', '.PNG', 'jpg', '.JPG', '.jpeg', '.JPEG', '.svg', '.SVG']:
-                    flash('File does not have an approved extension: jpg, jpeg, png, svg', 'error')
+                if file_ext not in ['.png', '.PNG', 'jpg', '.JPG',
+                                    '.jpeg', '.JPEG', '.svg', '.SVG']:
+                    flash('File does not have an approved extension:'
+                          ' jpg, jpeg, png, svg', 'error')
                     return render_template(
                         'events/edit_event.html',
                         title='New Event',
@@ -97,8 +99,10 @@ def update_event(id):
         if form.images.data[0].filename != '':
             for image in form.images.data:
                 filename, file_ext = os.path.splitext(image.filename)
-                if file_ext not in ['.png', '.PNG', 'jpg', '.JPG', '.jpeg', '.JPEG', '.svg', '.SVG']:
-                    flash('File does not have an approved extension: jpg, jpeg, png, svg', 'error')
+                if file_ext not in ['.png', '.PNG', 'jpg', '.JPG',
+                                    '.jpeg', '.JPEG', '.svg', '.SVG']:
+                    flash('File does not have an approved extension:'
+                          ' jpg, jpeg, png, svg', 'error')
                     return render_template(
                         'events/edit_event.html',
                         title='Update Event',
@@ -141,7 +145,11 @@ def delete_event(id):
 @login_required
 def delete_event_confirmation(id):
     event = Event.query.get_or_404(id)
-    return render_template('events/delete_event_confirmation.html', title='Delete Event Confirmation', event=event)
+    return render_template(
+        'events/delete_event_confirmation.html',
+        title='Delete Event Confirmation',
+        event=event
+    )
 
 
 @events.route("/event/search", methods=['GET', 'POST'])
@@ -173,7 +181,9 @@ def search_event():
             event_ids = event_ids.intersection(date_ids)
         if from_date and to_date:
             date_ids = set()
-            result = Event.query.filter(and_(from_date <= Event.date, Event.date <= to_date)).all()
+            result = Event.query.filter(and_(
+                from_date <= Event.date, Event.date <= to_date)
+            ).all()
             for event in result:
                 date_ids.add(event.id)
             event_ids = event_ids.intersection(date_ids)
