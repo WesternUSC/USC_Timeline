@@ -112,9 +112,10 @@ def update_event(id):
         id: ID of the event to be updated.
 
     Returns:
-        A redirect to the event route inside the events module if the form
-        submission is valid.
-        Otherwise, a rendered HTML template for this route.
+        If the form submission is valid and an Event with <id> exists, then a
+        redirect to the event route inside the events module is returned.
+        If an Event with <id> does not exist, then a 404 page is returned.
+        Otherwise, a rendered HTML template for this route is returned.
     """
     event = Event.query.get_or_404(id)
     UpdateEventForm = update_event_form_factory(event.category.name, event.id)

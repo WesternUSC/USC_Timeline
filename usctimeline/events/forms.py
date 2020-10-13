@@ -11,7 +11,7 @@ def category_query():
     return Category.query
 
 class EventForm(FlaskForm):
-    """Creates a form for creating a new Event object.
+    """Form for creating a new Event object.
 
     Attributes:
         title:
@@ -29,7 +29,7 @@ class EventForm(FlaskForm):
         images:
             An input element of type file for the event image(s).
         submit:
-            An input element of type submit to submit the form.
+            An input element of type submit.
     """
 
     title = StringField('Title', validators=[DataRequired()])
@@ -96,7 +96,7 @@ def update_event_form_factory(default_category_name, event_id):
 
 
 class SearchEventForm(FlaskForm):
-    """Creates a form for searching specific event(s) in the database.
+    """Form for searching specific event(s) in the database.
 
     Attributes:
         title:

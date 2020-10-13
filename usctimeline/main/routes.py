@@ -8,6 +8,11 @@ main = Blueprint('main', __name__)
 
 @main.route("/")
 def index():
+    """Index page for the website displaying the timeline.
+
+    Returns:
+        A rendered HTML template for the index page.
+    """
     all_events = Event.query.order_by(Event.date.asc())
     events_per_year = {}
     for event in all_events:
@@ -34,4 +39,8 @@ def index():
             for month in events_per_year[year]:
                 if month == int(event.date.strftime("%-m")):
                     events_per_year[year][month].append(event)
-    return render_template('main/timeline.html', events_per_year=events_per_year, month_name=month_name)
+    return render_template(
+        'main/timeline.html',
+        events_per_year=events_per_year,
+        month_name=month_name
+    )
