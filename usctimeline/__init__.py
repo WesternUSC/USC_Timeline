@@ -14,6 +14,20 @@ mail = Mail()
 
 
 def create_app(config_class=Config):
+    """Initializes a new Flask app.
+
+    Initializes a new Flask app with provided configurations. Initializes
+    database, bcrypt, login_manager and mail. Registers users, events, tags,
+    main, and errors modules (blueprints).
+
+    Args:
+        config_class:
+            Config class instance storing various configurations for
+            initializing this Flask app. (see config.py)
+
+    Returns:
+        An instance of Flask app.
+    """
     app = Flask(__name__)
     app.config.from_object(Config)
 

@@ -15,6 +15,19 @@ from usctimeline import create_app, db, bcrypt
 from usctimeline.models import User
 
 def create_user(username, email, password):
+    """Creates a new user account.
+
+    Takes in a given username, email and password. Password is hashed. Creates
+    a new instance of User and stores in database.
+
+    Args:
+        username: Username
+        email: Email
+        password: Password
+
+    Returns:
+        None
+    """
     new_user = User(
         username=username,
         email=email,
@@ -24,6 +37,11 @@ def create_user(username, email, password):
     db.session.commit()
 
 def main():
+    """Prompts user for username, email, password, then calls create_user().
+
+    Returns:
+        None
+    """
     username = input("Username: ")
     email = input("Email: ")
     password = getpass("Password: ")

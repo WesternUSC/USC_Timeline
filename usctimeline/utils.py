@@ -7,6 +7,14 @@ from usctimeline.models import Image
 
 
 def save_img_to_file_system(img):
+    """Saves image to filesystem.
+
+    Args:
+        img: Image file
+
+    Returns:
+        New instance of Image
+    """
     random_hex = secrets.token_hex(8)
     _, file_ext = os.path.splitext(img.filename)
     filename = random_hex + file_ext
@@ -18,10 +26,18 @@ def save_img_to_file_system(img):
 
 
 def send_reset_email(user):
+    """Sends email to user who requests password reset.
+
+    Args:
+        user: Instance of User
+
+    Returns:
+        None
+    """
     token = user.get_reset_token()
     message = Message(
         'Password Reset Request',
-        sender='noreply@demo.com',
+        sender='noreply.westernusc.timeline@gmail.com',
         recipients=[user.email]
     )
     message.body = f'''
