@@ -1,43 +1,44 @@
+"""Script for importing new events from a JSON file.
+
+The script can be executed by typing in: `python import.py` (assuming your
+current directory is `USC_Timeline/`).
+
+When executing this script you must provide a name of a JSON file which
+contains the event information. This file must be stored inside of
+`USC_Timeline/data/` prior to executing the command. Otherwise, a FileNotFound
+error will occur.
+
+How to execute this script:
+`python import.py filename.json`
+
+(Where filename.json is `USC_Timeline/data/filename.json` and stores the event
+data.)
+"""
+
+import sys
 import json
 from datetime import datetime
 from usctimeline import create_app, db
 from usctimeline.models import Event, Tag, Category
 
 
-def populate_tags(path_to_file):
-    with open(path_to_file) as file:
-        tags = json.load(file)
+def add_events(events):
+    """Add events to the database.
 
-    for tag in tags:
-        new_tag = Tag.query.filter_by(name=tag['name']).first()
-        if new_tag and new_tag.name.lower() == tag['name'].lower():
-            pass  # Tag already exists
-        else:
-            new_tag = Tag(name=tag['name'])
-            db.session.add(new_tag)
-    db.session.commit()
+    Args:
+        events: Dictionary of events to be added.
 
+    Returns:
+        True if events have been successfully uploaded to database.
+        None, otherwise.
 
-def populate_events(path_to_file):
-    with open(path_to_file) as file:
-        events = json.load(file)
-
-    event_num = 1
+    Raises:
+        ValueError: An error occurred query the database for category.
+    """
     for event in events:
-        if not event['title']:
-            raise ValueError(f"Could not import data. Title for event number {event_num} is empty.")
-        if not event['date']:
-            raise ValueError(f"Could not import data. Date for event number {event_num} is empty.")
-        if not event['description']:
-            raise ValueError(f"Could not import data. Description for event number {event_num} is empty.")
-        if not event['category']:
-            raise ValueError(f"Could not import data. Category for event number {event_num} is empty.")
         category = Category.query.filter_by(name=event['category']).first()
         if not category:
-            raise ValueError(
-                f"Could not import data. Category '{event['category']}' provided for event number {event_num} does not \
-exist. Note, category names are case-sensitive."
-            )
+            raise ValueError(f"Category '{event['category']}' not found.")
         date = datetime.strptime(event['date'], '%Y-%m-%d').date()
         new_event = Event(
             title=event['title'],
@@ -50,17 +51,40 @@ exist. Note, category names are case-sensitive."
         for name in tags:
             tag = Tag.query.filter_by(name=name).first()
             if not tag:
-                raise ValueError(
-                    f"Could not import data. Tag '{name}' provided for event number {event_num} caused an error or does \
-not yet exist. Note, tag names are case-sensitive and should be separated by a comma without any spacing between \
-names. For example, 'Science,Sports,Art'."
-                )
+                raise ValueError(f"Tag '{name}' not found.")
             new_event.tags.append(tag)
-            db.session.add(new_event)
+        db.session.add(new_event)
     db.session.commit()
+    return True
 
+def main():
+    """Opens file passed in as arg and converts data to dictionary of events.
 
-app = create_app()
-with app.app_context():
-    # populate_tags('data/tags.json')
-    populate_events('data/events.json')
+    Returns:
+        None
+    """
+    try:
+        with open('data/' + sys.argv[1]) as file:
+            events = json.load(file)
+        isUploaded = add_events(events)
+        if isUploaded:
+            print('Events uploaded successfully.')
+    except IndexError as e:
+        print(
+f'''
+    IndexError: {e}
+
+    This script requires a JSON file holding event data. 
+    (JSON file needs to be stored inside `USC_Timeline/data`)
+        `python import.py filename.json`
+
+    (The above command will upload events stored in `USC_Timeline/data/filename.json`)
+'''
+        )
+    except FileNotFoundError as e:
+        print("Error: File not found.")
+
+if __name__ == '__main__':
+    app = create_app()
+    with app.app_context():
+        main()
