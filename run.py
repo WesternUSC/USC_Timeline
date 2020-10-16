@@ -1,3 +1,5 @@
+"""Script for running the Flask application"""
+
 from usctimeline import create_app
 
 app = create_app()

@@ -1,8 +1,5 @@
 """Script for importing new events from a JSON file.
 
-The script can be executed by typing in: `python import.py` (assuming your
-current directory is `USC_Timeline/`).
-
 When executing this script you must provide a name of a JSON file which
 contains the event information. This file must be stored inside of
 `USC_Timeline/data/` prior to executing the command. Otherwise, a FileNotFound
