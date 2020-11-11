@@ -19,6 +19,14 @@ from usctimeline import create_app, db
 from usctimeline.models import Event, Tag, Category
 
 
+def create_categories():
+    CATEGORIES = ['USC', 'Statistics', 'Culture']
+    for name in CATEGORIES:
+        category = Category(name=name)
+        db.session.add(category)
+    db.session.commit()
+
+
 def add_events(events):
     """Add events to the database.
 
@@ -33,26 +41,28 @@ def add_events(events):
         ValueError: An error occurred query the database for category.
     """
     for event in events:
-        category = Category.query.filter_by(name=event['category']).first()
+        category = Category.query.filter_by(name=event['Category']).first()
         if not category:
-            raise ValueError(f"Category '{event['category']}' not found.")
-        date = datetime.strptime(event['date'], '%Y-%m-%d').date()
+            raise ValueError(f"Category '{event['Category']}' not found.")
+        date = datetime.strptime(event['Date'], '%Y-%m-%d').date()
         new_event = Event(
-            title=event['title'],
+            title=event['Title'],
             date=date,
-            description=event['description'],
-            external_url=event['url'],
+            description=event['Description'],
+            external_url=event['URL'],
             category=category
         )
-        tags = event['tags'].split(',')
-        for name in tags:
-            tag = Tag.query.filter_by(name=name).first()
-            if not tag:
-                raise ValueError(f"Tag '{name}' not found.")
-            new_event.tags.append(tag)
+        if event['Tag']:
+            tags = event['Tag'].split(',')
+            for name in tags:
+                tag = Tag.query.filter_by(name=name).first()
+                if not tag:
+                    raise ValueError(f"Tag '{name}' not found.")
+                new_event.tags.append(tag)
         db.session.add(new_event)
     db.session.commit()
     return True
+
 
 def main():
     """Opens file passed in as arg and converts data to dictionary of events.
@@ -61,14 +71,16 @@ def main():
         None
     """
     try:
-        with open('data/' + sys.argv[1]) as file:
+        with open('data/json/' + sys.argv[1]) as file:
             events = json.load(file)
+        if Category.query.count() != 3:
+            create_categories()
         isUploaded = add_events(events)
         if isUploaded:
             print('Events uploaded successfully.')
     except IndexError as e:
         print(
-f'''
+            f'''
     IndexError: {e}
 
     This script requires a JSON file holding event data. 
@@ -80,6 +92,7 @@ f'''
         )
     except FileNotFoundError as e:
         print("Error: File not found.")
+
 
 if __name__ == '__main__':
     app = create_app()
