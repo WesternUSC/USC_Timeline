@@ -14,6 +14,7 @@ from getpass import getpass
 from usctimeline import create_app, db, bcrypt
 from usctimeline.models import User
 
+
 def create_user(username, email, password):
     """Creates a new user account.
 
@@ -36,6 +37,7 @@ def create_user(username, email, password):
     db.session.add(new_user)
     db.session.commit()
 
+
 def main():
     """Prompts user for username, email, password, then calls create_user().
 
@@ -50,6 +52,7 @@ def main():
         create_user(username, email, password)
     else:
         print("Error: Passwords did not match. Please try again.")
+
 
 if __name__ == '__main__':
     app = create_app()
