@@ -36,7 +36,7 @@ def new_event():
         if form.images.data[0].filename != '':
             for image in form.images.data:
                 filename, file_ext = os.path.splitext(image.filename)
-                if file_ext not in ['.png', '.PNG', 'jpg', '.JPG',
+                if file_ext not in ['.png', '.PNG', '.jpg', '.JPG',
                                     '.jpeg', '.JPEG', '.svg', '.SVG']:
                     flash('File does not have an approved extension:'
                           ' jpg, jpeg, png, svg', 'error')
@@ -130,7 +130,7 @@ def update_event(id):
         if form.images.data[0].filename != '':
             for image in form.images.data:
                 filename, file_ext = os.path.splitext(image.filename)
-                if file_ext not in ['.png', '.PNG', 'jpg', '.JPG',
+                if file_ext not in ['.png', '.PNG', '.jpg', '.JPG',
                                     '.jpeg', '.JPEG', '.svg', '.SVG']:
                     flash('File does not have an approved extension:'
                           ' jpg, jpeg, png, svg', 'error')
