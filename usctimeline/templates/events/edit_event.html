@@ -95,13 +95,17 @@
                 </div>
             </fieldset>
             {% if images %}
-                <div class="edit-event-current-images-container">
                 {% for image in images %}
-                    <div class="edit-event-current-img">
-                        <img src="{{ url_for('static', filename='images/event/' + image.filename) }}" alt="Event image">
+                    <div class="edit-event-current-img-container">
+                        <div class="edit-event-current-img">
+                            <img src="{{ url_for('static', filename='images/event/' + image.filename) }}"
+                                 alt="Event image">
+                        </div>
+                        <a class="edit-event-current-img-delete-btn"
+                           href="{{ url_for('events.delete_event_image_confirmation', event_id=event_id, image_id=image.id) }}"
+                        >Delete</a>
                     </div>
                 {% endfor %}
-                </div>
             {% else %}
                 <small>Event currently has no images.</small>
             {% endif %}

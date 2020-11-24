@@ -6,7 +6,7 @@ from sqlalchemy import and_
 from usctimeline import db
 from usctimeline.models import Event, Image, Tag
 from usctimeline.utils import save_img_to_file_system
-from usctimeline.events.forms import (EventForm, SearchEventForm, update_event_form_factory)
+from usctimeline.events.forms import EventForm, SearchEventForm, update_event_form_factory
 
 events = Blueprint('events', __name__)
 
@@ -156,9 +156,56 @@ def update_event(id):
         'events/edit_event.html',
         title='Update Event',
         form=form,
+        event_id=event.id,
         images=event.images,
         legend='Update Event',
         cancel_dest=url_for('events.event', id=event.id),
+    )
+
+
+@events.route('/event/<int:event_id>/image/<int:image_id>/delete/')
+@login_required
+def delete_event_image(event_id, image_id):
+    """Route for removing an image from an event.
+
+    Args:
+        event_id: Event ID
+        image_id: ID of the image to be removed
+
+    Returns:
+        A redirect for the update_event route inside the events module if
+        an event with <event_id> and an image with <image_id> exists.
+        Otherwise, a 404 page.
+    """
+    event = Event.query.get_or_404(event_id)
+    image = Image.query.get_or_404(image_id)
+    event.images.remove(image)
+    db.session.commit()
+    flash('Image has been removed.', 'success')
+    return redirect(url_for('events.update_event', id=event_id))
+
+
+@events.route('/event/<int:event_id>/image/<int:image_id>/delete/confirm')
+@login_required
+def delete_event_image_confirmation(event_id, image_id):
+    """Route for confirming the removal of an image from an event.
+
+    Args:
+        event_id: Event ID
+        image_id: ID of the image to be removed
+
+    Returns:
+        A rendered HTML template for this route if an event with <event_id>
+        and an image with <image_id> exists.
+        Otherwise, a 404 page.
+    """
+    event = Event.query.get_or_404(event_id)
+    image = Image.query.get_or_404(image_id)
+    return render_template(
+        'events/delete_event_image_confirmation.html',
+        title='Delete Event Image Confirmation',
+        event=event,
+        image=image
     )
 
 

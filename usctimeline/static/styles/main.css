@@ -723,20 +723,34 @@ input {
     text-align: center;
     border-bottom: 0.0625rem solid #EDEDED; }
 
-.edit-event-current-images-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); }
-  @media (min-width: 350px) {
-    .edit-event-current-images-container {
-      width: 100%; } }
-  @media (min-width: 900px) {
-    .edit-event-current-images-container {
-      width: 50%; } }
+.edit-event-current-img-container {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center; }
 
 .edit-event-current-img {
+  display: inline-block;
   height: 50px; }
   .edit-event-current-img img {
     height: 100%; }
+
+.edit-event-current-img-delete-btn {
+  margin-left: 1rem;
+  display: inline-block;
+  background-color: #FAFAFA;
+  border: 0.125rem solid #000000;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.5rem; }
+  .edit-event-current-img-delete-btn:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+    border-color: #000000;
+    transition: 0.3s; }
 
 .update-event-btn-container {
   padding: 2rem 0;
@@ -1159,4 +1173,54 @@ input {
     background-color: #000000;
     color: #FFFFFF;
     border-color: #000000;
+    transition: 0.3s; }
+
+.delete-event-image-confirmation-msg {
+  padding: 2rem 0;
+  text-align: center; }
+
+.delete-event-image-confirmation-container {
+  display: flex;
+  justify-content: center; }
+  .delete-event-image-confirmation-container img {
+    height: 200px; }
+
+.delete-event-image-confirmation-btn-container {
+  padding: 2rem 0;
+  text-align: center; }
+
+.delete-event-image-confirmation-btn {
+  margin: 0 0.5rem;
+  display: inline-block;
+  background-color: #FAFAFA;
+  border: 0.125rem solid #000000;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.75rem; }
+  .delete-event-image-confirmation-btn:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+    border-color: #000000;
+    transition: 0.3s; }
+
+.delete-event-image-confirmation-cancel-btn {
+  margin: 0 0.5rem;
+  display: inline-block;
+  background-color: #4F2784;
+  border: 0.125rem solid #4F2784;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.75rem; }
+  .delete-event-image-confirmation-cancel-btn:hover {
+    background-color: #FAFAFA;
+    color: #4F2784;
+    border-color: #4F2784;
     transition: 0.3s; }

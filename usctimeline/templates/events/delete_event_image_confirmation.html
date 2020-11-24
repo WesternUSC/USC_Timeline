@@ -1,0 +1,12 @@
+{% extends 'components/layout.html' %}
+{% block content %}
+    <h3 class="delete-event-image-confirmation-msg">Are you sure you want to delete this image?</h3>
+    <div class="delete-event-image-confirmation-container">
+        <img src="{{ url_for('static', filename='images/event/' + image.filename) }}" alt="Event image to delete">
+    </div>
+    <div class="delete-event-image-confirmation-btn-container">
+        <a class="delete-event-image-confirmation-btn"
+           href="{{ url_for('events.delete_event_image', event_id=event.id, image_id=image.id) }}">Delete</a>
+        <a class="delete-event-image-confirmation-cancel-btn" href="{{ url_for('events.event', id=event.id) }}">Cancel</a>
+    </div>
+{% endblock content %}

@@ -1,0 +1,28 @@
+.delete-event-image-confirmation-msg {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.delete-event-image-confirmation-container {
+  display: flex;
+  justify-content: center;
+
+  img {
+    height: 200px;
+  }
+}
+
+.delete-event-image-confirmation-btn-container {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.delete-event-image-confirmation-btn {
+  margin: 0 0.5rem;
+  @include btn-secondary-med;
+}
+
+.delete-event-image-confirmation-cancel-btn {
+  margin: 0 0.5rem;
+  @include btn-primary-med;
+}
