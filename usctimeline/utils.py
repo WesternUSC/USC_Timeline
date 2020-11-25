@@ -25,6 +25,15 @@ def save_img_to_file_system(img):
     return Image(filename=filename)
 
 
+def delete_img_from_file_system(img):
+    filename = img.filename
+    if os.path.isfile('./usctimeline/static/images/event/' + filename):
+        os.remove('./usctimeline/static/images/event/' + filename)
+        return True
+    else:
+        return False
+
+
 def send_reset_email(user):
     """Sends email to user who requests password reset.
 

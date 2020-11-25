@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 from sqlalchemy import and_
 from usctimeline import db
 from usctimeline.models import Event, Image, Tag
-from usctimeline.utils import save_img_to_file_system
+from usctimeline.utils import save_img_to_file_system, delete_img_from_file_system
 from usctimeline.events.forms import EventForm, SearchEventForm, update_event_form_factory
 
 events = Blueprint('events', __name__)
@@ -179,7 +179,8 @@ def delete_event_image(event_id, image_id):
     """
     event = Event.query.get_or_404(event_id)
     image = Image.query.get_or_404(image_id)
-    event.images.remove(image)
+    delete_img_from_file_system(image)
+    db.session.delete(image)
     db.session.commit()
     flash('Image has been removed.', 'success')
     return redirect(url_for('events.update_event', id=event_id))
