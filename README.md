@@ -56,10 +56,9 @@ The website should now be accessible on [localhost:5000](http://localhost:5000)
 ### `import.py`
 - Imports new events from a JSON file.
 - When executing this script, you must provide a name of a JSON file which contains the event information. This file
-must be stored inside of `USC_Timeline/data/` prior to executing this command. Otherwise, a `FileNotFound` error will
-occur.
-- How to execute this script: `python import.py filename.json`, where `filename.json` is
-`USC_Timeline/data/filename.json` and stores the event information.
+should be stored inside of `USC_Timeline/data/` prior to executing this command.
+- How to execute this script: `python import.py USC_Timeline/data/filename.json`, where `filename.json`
+stores the event information.
 
 ### `createuser.py`
 - Creates a new user account. Upon executing the script, you will be prompted to enter a username, email and

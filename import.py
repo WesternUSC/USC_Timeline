@@ -1,12 +1,12 @@
 """Script for importing new events from a JSON file.
 
-When executing this script you must provide a name of a JSON file which
-contains the event information. This file must be stored inside of
-`USC_Timeline/data/` prior to executing the command. Otherwise, a FileNotFound
+When executing this script you must provide the path of a JSON file which
+contains the event information. This file should be stored inside of
+`USC_Timeline/data/json/` prior to executing the command. Otherwise, a FileNotFound
 error will occur.
 
 How to execute this script:
-`python import.py filename.json`
+`python import.py data/json/filename.json`
 
 (Where filename.json is `USC_Timeline/data/filename.json` and stores the event
 data.)
@@ -71,7 +71,7 @@ def main():
         None
     """
     try:
-        with open('data/json/' + sys.argv[1]) as file:
+        with open(sys.argv[1]) as file:
             events = json.load(file)
         if Category.query.count() != 3:
             create_categories()

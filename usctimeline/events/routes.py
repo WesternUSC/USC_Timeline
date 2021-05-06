@@ -177,7 +177,6 @@ def delete_event_image(event_id, image_id):
         an event with <event_id> and an image with <image_id> exists.
         Otherwise, a 404 page.
     """
-    event = Event.query.get_or_404(event_id)
     image = Image.query.get_or_404(image_id)
     delete_img_from_file_system(image)
     db.session.delete(image)

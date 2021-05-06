@@ -107,7 +107,7 @@ class Event(db.Model):
     date = db.Column(db.Date, nullable=False)
     description = db.Column(db.Text, nullable=False)
     external_url = db.Column(db.Text)
-    category_id = db.Column(
+    category = db.Column(
         db.Integer,
         db.ForeignKey('category.id'),
         nullable=False
