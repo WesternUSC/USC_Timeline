@@ -53,6 +53,10 @@ The website should now be accessible on [localhost:5000](http://localhost:5000)
 
 ## Scripts
 
+### `createdb.py`
+- If a database is not created, run this command before `import.py`.
+- To run command: `python createdb.py`
+
 ### `import.py`
 - Imports new events from a JSON file.
 - When executing this script, you must provide a name of a JSON file which contains the event information. This file
